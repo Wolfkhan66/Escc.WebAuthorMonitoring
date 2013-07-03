@@ -1,4 +1,6 @@
 ﻿
+using System.Collections.Generic;
+
 namespace Escc.WebAuthorMonitoring
 {
     /// <summary>
@@ -6,5 +8,10 @@ namespace Escc.WebAuthorMonitoring
     /// </summary>
     public interface IWebAuthorMonitoringRepository
     {
+        /// <summary>
+        /// Reads the possible types of problem which could be reported.
+        /// </summary>
+        /// <returns></returns>
+        IEnumerable<ProblemType> ReadProblemTypes();
     }
 }

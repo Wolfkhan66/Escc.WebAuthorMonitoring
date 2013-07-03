@@ -117,7 +117,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>2166</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost/managewebsite/qualitymonitoring</IISUrl>
+          <IISUrl>http://localhost/managewebsite/webauthormonitoring</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

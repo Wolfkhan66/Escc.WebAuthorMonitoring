@@ -3,6 +3,13 @@
 <configuration>
     <system.web>
         <compilation debug="true" targetFramework="4.0" />
+        <pages masterPageFile="~/example.master">
+            <controls>
+                <!-- Add controls which are declared at root of site, repeated here in dev only for Visual Studio intellisense-->
+                <add tagPrefix="EastSussexGovUK" namespace="EsccWebTeam.EastSussexGovUK" assembly="EsccWebTeam.EastSussexGovUK, Version=1.0.0.0, Culture=neutral, PublicKeyToken=06fad7304560ae6f"/>
+                <add tagPrefix="Egms" namespace="EsccWebTeam.Egms" assembly="EsccWebTeam.Egms, Version=1.0.0.0, Culture=neutral, PublicKeyToken=06fad7304560ae6f"/>
+            </controls>
+        </pages>
     </system.web>
 
 </configuration>

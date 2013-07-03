@@ -1,4 +1,6 @@
 ﻿
+using System.Collections.Generic;
+
 namespace Escc.WebAuthorMonitoring.SqlServer
 {
     /// <summary>
@@ -6,5 +8,9 @@ namespace Escc.WebAuthorMonitoring.SqlServer
     /// </summary>
     public class SqlServerRepository : IWebAuthorMonitoringRepository
     {
+        public IEnumerable<ProblemType> ReadProblemTypes()
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }
