@@ -46,9 +46,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Fakes\FakeContentManagementSystem.cs" />
     <Compile Include="Fakes\FakeRepository.cs" />
     <Compile Include="IContentManagementProvider.cs" />
     <Compile Include="IWebAuthorMonitoringRepository.cs" />
+    <Compile Include="Page.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SqlServer\SqlServerRepository.cs" />
     <Compile Include="ProblemType.cs" />

@@ -14,7 +14,7 @@
 </asp:Content>
 
 <asp:Content runat="server" ContentPlaceHolderID="content">
-    <div class="full-page">
+    <div class="full-page" runat="server" id="container">
         <article>
             <div class="text">
                 <h1>Report a problem to web authors</h1>

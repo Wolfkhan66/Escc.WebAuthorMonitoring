@@ -3,6 +3,7 @@ using System.Globalization;
 using System.Web;
 using System.Web.UI.WebControls;
 using Escc.WebAuthorMonitoring.Fakes;
+using EsccWebTeam.EastSussexGovUK;
 
 namespace Escc.WebAuthorMonitoring.Website.report
 {
@@ -10,8 +11,41 @@ namespace Escc.WebAuthorMonitoring.Website.report
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            var cms = new FakeContentManagementSystem();
             var repo = new FakeRepository();
+
+            var pageUrl = ValidatePageUrlFromQueryString();
+            var pageDetails = cms.ReadMetadataForPage(pageUrl);
+
+            SetupLinkToPage(pageDetails);
             SetupProblemTypeList(repo);
+        }
+
+        private void SetupLinkToPage(Page pageDetails)
+        {
+            if (pageDetails != null)
+            {
+                this.regardingPage.HRef = pageDetails.PageUrl.ToString();
+                this.regardingPage.InnerText = pageDetails.PageTitle;
+            }
+        }
+
+        private Uri ValidatePageUrlFromQueryString()
+        {
+            if (!IsPostBack && String.IsNullOrEmpty(Request.QueryString["page"]))
+            {
+                EastSussexGovUKContext.HttpStatus400BadRequest(this.container);
+            }
+
+            try
+            {
+                return new Uri(Request.QueryString["page"]);
+            }
+            catch (UriFormatException)
+            {
+                EastSussexGovUKContext.HttpStatus400BadRequest(this.container);
+                return null;
+            }
         }
 
         private void SetupProblemTypeList(IWebAuthorMonitoringRepository repo)

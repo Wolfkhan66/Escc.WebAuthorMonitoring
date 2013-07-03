@@ -7,13 +7,20 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Escc.WebAuthorMonitoring.Website.report
-{
-
-
-    public partial class DefaultPage
-    {
-
+namespace Escc.WebAuthorMonitoring.Website.report {
+    
+    
+    public partial class DefaultPage {
+        
+        /// <summary>
+        /// container control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl container;
+        
         /// <summary>
         /// toList control.
         /// </summary>
@@ -22,7 +29,7 @@ namespace Escc.WebAuthorMonitoring.Website.report
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl toList;
-
+        
         /// <summary>
         /// regardingPage control.
         /// </summary>
@@ -31,7 +38,7 @@ namespace Escc.WebAuthorMonitoring.Website.report
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlAnchor regardingPage;
-
+        
         /// <summary>
         /// problemTypes control.
         /// </summary>
@@ -40,7 +47,7 @@ namespace Escc.WebAuthorMonitoring.Website.report
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.CheckBoxList problemTypes;
-
+        
         /// <summary>
         /// message control.
         /// </summary>

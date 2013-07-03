@@ -1,4 +1,6 @@
 ﻿
+using System;
+
 namespace Escc.WebAuthorMonitoring.MicrosoftCms
 {
     /// <summary>
@@ -6,5 +8,9 @@ namespace Escc.WebAuthorMonitoring.MicrosoftCms
     /// </summary>
     public class MicrosoftCmsProvider : IContentManagementProvider
     {
+        public Page ReadMetadataForPage(Uri pageUrl)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
