@@ -28,17 +28,19 @@
 
                         <p class="read-only">
                             <span class="formLabel">Regarding page</span>
-                            <a href="" id="regardingPage" runat="server"></a>
+                            <a id="regardingPage" runat="server"></a>
                         </p>
 
                         <fieldset class="formPart">
                             <legend class="formLabel">Subject</legend>
                             <asp:CheckBoxList runat="server" ID="problemTypes" CssClass="radioButtonList problem-types" RepeatDirection="Horizontal" RepeatLayout="Flow"/>
+                            <asp:CustomValidator runat="server" ErrorMessage="Please select at least one subject" OnServerValidate="RequireSubject_ServerValidate" />
                         </fieldset>
                         
                         <div class="formPart">
                             <asp:Label runat="server" AssociatedControlID="message">Message</asp:Label>
                             <asp:TextBox runat="server" ID="message" TextMode="MultiLine" CssClass="message" />
+                            <asp:RequiredFieldValidator runat="server" ControlToValidate="message" ErrorMessage="Please type a message for the web author, explaining the problem" />
                         </div>
                     </div>
                     

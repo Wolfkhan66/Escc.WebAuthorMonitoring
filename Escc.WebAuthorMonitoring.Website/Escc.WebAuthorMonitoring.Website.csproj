@@ -58,6 +58,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="default.aspx" />
+    <Content Include="report\default.js" />
     <Content Include="report\default.aspx" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">

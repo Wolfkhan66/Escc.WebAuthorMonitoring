@@ -67,12 +67,24 @@ namespace Escc.WebAuthorMonitoring.Website.report
         {
             if (repo == null) throw new ArgumentNullException("repo");
 
+            // Viewstate doesn't preserve the data-* attribute on postback, so viewstate is turned off and we do it ourselves
+            this.problemTypes.Items.Clear();
+            var index = 0;
             foreach (ProblemType problemType in repo.ReadProblemTypes())
             {
                 var item = new ListItem(problemType.Name, problemType.ProblemTypeId.ToString(CultureInfo.InvariantCulture));
                 item.Attributes["data-default-text"] = HttpUtility.HtmlAttributeEncode(problemType.DefaultText);
+                item.Selected = !String.IsNullOrEmpty(Request.Form[problemTypes.UniqueID + "$" + index.ToString(CultureInfo.InvariantCulture)]);
                 this.problemTypes.Items.Add(item);
+                index++;
             }
+        }
+
+        protected void RequireSubject_ServerValidate(object sender, ServerValidateEventArgs e)
+        {
+            if (e == null) throw new ArgumentNullException("e");
+
+            e.IsValid = (this.problemTypes.SelectedItem != null);
         }
     }
 }
