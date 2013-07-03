@@ -33,12 +33,12 @@
 
                         <fieldset class="formPart">
                             <legend class="formLabel">Subject</legend>
-                            <asp:CheckBoxList runat="server" ID="problemTypes" CssClass="radioButtonList" RepeatDirection="Horizontal" RepeatLayout="Flow"/>
+                            <asp:CheckBoxList runat="server" ID="problemTypes" CssClass="radioButtonList problem-types" RepeatDirection="Horizontal" RepeatLayout="Flow"/>
                         </fieldset>
                         
                         <div class="formPart">
                             <asp:Label runat="server" AssociatedControlID="message">Message</asp:Label>
-                            <asp:TextBox runat="server" ID="message" TextMode="MultiLine" />
+                            <asp:TextBox runat="server" ID="message" TextMode="MultiLine" CssClass="message" />
                         </div>
                     </div>
                     
@@ -50,3 +50,7 @@
 </asp:Content>
 
 <asp:Content runat="server" ContentPlaceHolderID="supporting" />
+
+<asp:Content runat="server" ContentPlaceHolderID="javascript">
+    <script src="default.js"></script>
+</asp:Content>
