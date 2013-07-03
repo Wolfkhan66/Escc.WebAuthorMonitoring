@@ -1,5 +1,6 @@
 ﻿
 using System;
+using System.Collections.Generic;
 
 namespace Escc.WebAuthorMonitoring.MicrosoftCms
 {
@@ -9,6 +10,16 @@ namespace Escc.WebAuthorMonitoring.MicrosoftCms
     public class MicrosoftCmsProvider : IContentManagementProvider
     {
         public Page ReadMetadataForPage(Uri pageUrl)
+        {
+            throw new NotImplementedException();
+        }
+
+        public string ReadPermissionsGroupNameForPage(Uri pageUrl)
+        {
+            throw new NotImplementedException();
+        }
+
+        public IEnumerable<WebAuthor> ReadWebAuthorsInGroup(string groupName)
         {
             throw new NotImplementedException();
         }

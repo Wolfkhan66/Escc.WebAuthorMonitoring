@@ -1,5 +1,6 @@
 ﻿
 using System;
+using System.Collections.Generic;
 
 namespace Escc.WebAuthorMonitoring
 {
@@ -13,5 +14,19 @@ namespace Escc.WebAuthorMonitoring
         /// </summary>
         /// <returns></returns>
         Page ReadMetadataForPage(Uri pageUrl);
+
+        /// <summary>
+        /// Reads the name of the permissions group for the supplied page.
+        /// </summary>
+        /// <param name="pageUrl">The page URL.</param>
+        /// <returns></returns>
+        string ReadPermissionsGroupNameForPage(Uri pageUrl);
+
+        /// <summary>
+        /// Reads the web authors in a permissions group.
+        /// </summary>
+        /// <param name="groupName">Name of the permissions group.</param>
+        /// <returns></returns>
+        IEnumerable<WebAuthor> ReadWebAuthorsInGroup(string groupName);
     }
 }

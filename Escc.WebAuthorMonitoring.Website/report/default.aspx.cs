@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Globalization;
 using System.Web;
+using System.Web.UI;
 using System.Web.UI.WebControls;
 using Escc.WebAuthorMonitoring.Fakes;
 using EsccWebTeam.EastSussexGovUK;
@@ -16,9 +17,23 @@ namespace Escc.WebAuthorMonitoring.Website.report
 
             var pageUrl = ValidatePageUrlFromQueryString();
             var pageDetails = cms.ReadMetadataForPage(pageUrl);
+            SetupRecipientList(cms, pageUrl);
 
             SetupLinkToPage(pageDetails);
             SetupProblemTypeList(repo);
+        }
+
+        private void SetupRecipientList(IContentManagementProvider cms, Uri pageUrl)
+        {
+            var groupName = cms.ReadPermissionsGroupNameForPage(pageUrl);
+            if (!String.IsNullOrEmpty(groupName))
+            {
+                var webAuthors = cms.ReadWebAuthorsInGroup(groupName);
+                foreach (WebAuthor webAuthor in webAuthors)
+                {
+                    this.toList.Controls.Add(new LiteralControl("<li>" + HttpUtility.HtmlEncode(webAuthor.Name + ", " + webAuthor.EmailAddress) + "</li>"));
+                }
+            }
         }
 
         private void SetupLinkToPage(Page pageDetails)
