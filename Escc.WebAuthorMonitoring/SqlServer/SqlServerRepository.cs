@@ -24,7 +24,7 @@ namespace Escc.WebAuthorMonitoring.SqlServer
             throw new NotImplementedException();
         }
 
-        public IList<ProblemReport> ReadProblemReports(DateTime? startDate, DateTime? endDate, ProblemType problemType, Uri pageUrl, string webAuthorPermissionsGroup, string webAuthorName)
+        public IList<ProblemReport> ReadProblemReports(DateTime? startDate, DateTime? endDate, Uri pageUrl, string webAuthorPermissionsGroup, string webAuthorName)
         {
             throw new NotImplementedException();
         }

@@ -42,5 +42,17 @@ namespace Escc.WebAuthorMonitoring.Fakes
                     new WebAuthor(){Name="Jane Smith", EmailAddress = "jane.smith@example.org", UserName = "janesmith", UserId = "2"}
                 };
         }
+
+        /// <summary>
+        /// Parses a page URL into one recognised by the Content Management System.
+        /// </summary>
+        /// <param name="urlToParse">The URL to parse.</param>
+        /// <returns></returns>
+        public Uri ParsePageUrl(string urlToParse)
+        {
+            if (String.IsNullOrEmpty(urlToParse)) return null;
+
+            return new Uri(urlToParse, UriKind.RelativeOrAbsolute);
+        }
     }
 }

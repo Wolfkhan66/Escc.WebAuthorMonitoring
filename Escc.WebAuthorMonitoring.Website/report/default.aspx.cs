@@ -162,7 +162,7 @@ namespace Escc.WebAuthorMonitoring.Website.report
 
         private void AddRelatedReports(StringBuilder html)
         {
-            var relatedReports = _repo.ReadProblemReports(null, null, null, null, _problem.WebAuthorPermissionsGroupName, null);
+            var relatedReports = _repo.ReadProblemReports(null, null, null, _problem.WebAuthorPermissionsGroupName, null);
             if (relatedReports.Count > 0)
             {
                 if (String.IsNullOrEmpty(ConfigurationManager.AppSettings["Escc.WebAuthorMonitoring.ViewReportUrl"]))

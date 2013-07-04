@@ -28,5 +28,12 @@ namespace Escc.WebAuthorMonitoring
         /// <param name="groupName">Name of the permissions group.</param>
         /// <returns></returns>
         IEnumerable<WebAuthor> ReadWebAuthorsInGroup(string groupName);
+
+        /// <summary>
+        /// Parses a page URL into one recognised by the Content Management System.
+        /// </summary>
+        /// <param name="urlToParse">The URL to parse.</param>
+        /// <returns></returns>
+        Uri ParsePageUrl(string urlToParse);
     }
 }
