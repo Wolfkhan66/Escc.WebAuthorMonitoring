@@ -22,6 +22,15 @@ namespace Escc.WebAuthorMonitoring.Website.report {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl container;
         
         /// <summary>
+        /// reportForm control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl reportForm;
+        
+        /// <summary>
         /// toList control.
         /// </summary>
         /// <remarks>
@@ -56,5 +65,14 @@ namespace Escc.WebAuthorMonitoring.Website.report {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox message;
+        
+        /// <summary>
+        /// confirm control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.PlaceHolder confirm;
     }
 }

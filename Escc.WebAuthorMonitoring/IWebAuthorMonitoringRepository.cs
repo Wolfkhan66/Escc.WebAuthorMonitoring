@@ -13,5 +13,11 @@ namespace Escc.WebAuthorMonitoring
         /// </summary>
         /// <returns></returns>
         IEnumerable<ProblemType> ReadProblemTypes();
+
+        /// <summary>
+        /// Saves the report and adds a unique reference number in the <see cref="ProblemReport.ProblemReportId"/> property.
+        /// </summary>
+        /// <param name="report">The report.</param>
+        void SaveReport(ProblemReport report);
     }
 }

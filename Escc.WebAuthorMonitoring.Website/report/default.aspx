@@ -18,7 +18,7 @@
         <article>
             <div class="text">
                 <h1>Report a problem to web authors</h1>
-                <div class="form service-form">
+                <div class="form service-form" runat="server" id="reportForm">
                     <asp:ValidationSummary runat="server"/>
                     <div class="formBox">
                         <p class="read-only">
@@ -44,8 +44,12 @@
                         </div>
                     </div>
                     
-                    <asp:Button runat="server" Text="Report it"/>
+                    <asp:Button runat="server" Text="Report it" OnClick="Button_Click"/>
                 </div>
+                <asp:PlaceHolder runat="server" id="confirm" Visible="False">
+                    <p>Your report has been sent to the web authors responsible for the page.</p>
+                    <p><a href="../default.aspx">View problems reported to web authors</a></p>
+                </asp:PlaceHolder>
             </div>
         </article>
     </div>

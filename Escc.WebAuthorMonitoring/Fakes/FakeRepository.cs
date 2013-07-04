@@ -21,5 +21,14 @@ namespace Escc.WebAuthorMonitoring.Fakes
                     new ProblemType(){ProblemTypeId=3,Name = "Minor problem", DefaultText = "We've noticed a minor problem."}
                 };
         }
+
+        /// <summary>
+        /// Saves the report and adds a unique reference number in the <see cref="ProblemReport.ProblemReportId"/> property.
+        /// </summary>
+        /// <param name="report">The report.</param>
+        public void SaveReport(ProblemReport report)
+        {
+            if (report != null) report.ProblemReportId = 12345;
+        }
     }
 }

@@ -12,5 +12,10 @@ namespace Escc.WebAuthorMonitoring.SqlServer
         {
             throw new System.NotImplementedException();
         }
+
+        public void SaveReport(ProblemReport report)
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }
