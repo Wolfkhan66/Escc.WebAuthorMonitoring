@@ -9,6 +9,12 @@
                 <add tagPrefix="EastSussexGovUK" namespace="EsccWebTeam.EastSussexGovUK" assembly="EsccWebTeam.EastSussexGovUK, Version=1.0.0.0, Culture=neutral, PublicKeyToken=06fad7304560ae6f"/>
                 <add tagPrefix="Egms" namespace="EsccWebTeam.Egms" assembly="EsccWebTeam.Egms, Version=1.0.0.0, Culture=neutral, PublicKeyToken=06fad7304560ae6f"/>
             </controls>
+            <tagMapping>
+                <add tagType="System.Web.UI.WebControls.Button" mappedTagType="eastsussexgovuk.webservices.FormControls.EsccButton, EsccWebTeam.FormControls, Version=1.0.0.0, Culture=neutral"/>
+                <add tagType="System.Web.UI.WebControls.CustomValidator" mappedTagType="eastsussexgovuk.webservices.FormControls.Validators.EsccCustomValidator, EsccWebTeam.FormControls, Version=1.0.0.0, Culture=neutral, PublicKeyToken=06fad7304560ae6f"/>
+                <add tagType="System.Web.UI.WebControls.RequiredFieldValidator" mappedTagType="eastsussexgovuk.webservices.FormControls.Validators.EsccRequiredFieldValidator, EsccWebTeam.FormControls, Version=1.0.0.0, Culture=neutral, PublicKeyToken=06fad7304560ae6f"/>
+                <add tagType="System.Web.UI.WebControls.ValidationSummary" mappedTagType="eastsussexgovuk.webservices.FormControls.Validators.EsccValidationSummary, EsccWebTeam.FormControls, Version=1.0.0.0, Culture=neutral, PublicKeyToken=06fad7304560ae6f"/>
+            </tagMapping>
         </pages>
     </system.web>
 
