@@ -1,6 +1,10 @@
 ﻿<?xml version="1.0"?>
 
 <configuration>
+    <appSettings>
+        <add key="Escc.WebAuthorMonitoring.TestEmailListenerAddress" value="developer@example.org"/>
+        <add key="Escc.WebAuthorMonitoring.ViewReportUrl" value="http://localhost/managewebsite/webauthormonitoring/report.aspx?report={0}"/>
+    </appSettings>
     <system.web>
         <compilation debug="true" targetFramework="4.0" />
         <pages masterPageFile="~/example.master">

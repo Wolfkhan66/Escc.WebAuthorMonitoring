@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 
 namespace Escc.WebAuthorMonitoring
 {
@@ -53,12 +54,20 @@ namespace Escc.WebAuthorMonitoring
         public DateTime ReportDate { get; set; }
 
         /// <summary>
+        /// Gets or sets the related reports.
+        /// </summary>
+        /// <value>The related reports.</value>
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1002:DoNotExposeGenericLists")]
+        public List<ProblemReport> RelatedReports { get; private set; }
+
+        /// <summary>
         /// Initializes a new instance of the <see cref="ProblemReport"/> class.
         /// </summary>
         public ProblemReport()
         {
             this.WebAuthors = new List<WebAuthor>();
             this.ProblemTypes = new List<ProblemType>();
+            this.RelatedReports = new List<ProblemReport>();
         }
 
         /// <summary>
@@ -67,7 +76,8 @@ namespace Escc.WebAuthorMonitoring
         /// <returns></returns>
         public string SubjectLine()
         {
-            throw new NotImplementedException();
+            var problemType = (ProblemTypes.Count == 1) ? ProblemTypes[0].Name : "Multiple issues";
+            return "Website - " + problemType + " Ref: " + ProblemReportId.ToString(CultureInfo.InvariantCulture);
         }
     }
 }

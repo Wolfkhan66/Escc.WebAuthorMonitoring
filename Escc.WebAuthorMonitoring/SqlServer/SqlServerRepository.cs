@@ -1,4 +1,5 @@
 ﻿
+using System;
 using System.Collections.Generic;
 
 namespace Escc.WebAuthorMonitoring.SqlServer
@@ -16,6 +17,11 @@ namespace Escc.WebAuthorMonitoring.SqlServer
         public void SaveReport(ProblemReport report)
         {
             throw new System.NotImplementedException();
+        }
+
+        public IEnumerable<ProblemReport> ReadProblemReports(DateTime? startDate, DateTime? endDate, ProblemType problemType, Uri pageUrl, string webAuthorPermissionsGroup, string webAuthorName)
+        {
+            throw new NotImplementedException();
         }
     }
 }

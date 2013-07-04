@@ -90,6 +90,10 @@
       <Project>{1426FEF0-23DC-4C23-AE15-67F2527BD741}</Project>
       <Name>eastsussex.gov.uk</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\..\VS Projects\_Libraries for re-use\EsccWebTeam.FormControls\EsccWebTeam.FormControls.csproj">
+      <Project>{E6D5883F-99CE-4BF5-974A-66C542C43CFB}</Project>
+      <Name>EsccWebTeam.FormControls</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\VS Projects\_Standards\E-Government Metadata Standard %28E-GMS%29\EsccWebTeam.Egms\EsccWebTeam.Egms.csproj">
       <Project>{78083DCB-B12F-4950-86C5-3A844D8604F3}</Project>
       <Name>EsccWebTeam.Egms</Name>

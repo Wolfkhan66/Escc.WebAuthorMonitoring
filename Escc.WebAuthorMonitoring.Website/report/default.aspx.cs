@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Web;
 using System.Web.UI;
@@ -13,6 +14,7 @@ namespace Escc.WebAuthorMonitoring.Website.report
         private readonly IWebAuthorMonitoringRepository _repo = new FakeRepository();
         private readonly IContentManagementProvider _cms = new FakeContentManagementSystem();
         private readonly ProblemReport _problem = new ProblemReport();
+        private readonly IEnumerable<IReportListener> _listeners = new[] { new TestEmailListener() };
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -95,16 +97,23 @@ namespace Escc.WebAuthorMonitoring.Website.report
         {
             if (Page.IsValid)
             {
-                AddSubmittedDataToReport();
+                AddDataToReport();
 
                 this._repo.SaveReport(this._problem);
+
+                this.PublishReport();
 
                 this.reportForm.Visible = false;
                 this.confirm.Visible = true;
             }
         }
 
-        private void AddSubmittedDataToReport()
+        private void PublishReport()
+        {
+            foreach (var listener in _listeners) listener.ReportPublished(_problem);
+        }
+
+        private void AddDataToReport()
         {
             this._problem.ReportDate = DateTime.Now;
             foreach (ListItem item in this.problemTypes.Items)
@@ -125,7 +134,10 @@ namespace Escc.WebAuthorMonitoring.Website.report
                     }
                 }
             }
+
             this._problem.MessageHtml = this.message.Text;
+
+            this._problem.RelatedReports.AddRange(_repo.ReadProblemReports(null, null, null, null, _problem.WebAuthorPermissionsGroupName, null));
         }
     }
 }

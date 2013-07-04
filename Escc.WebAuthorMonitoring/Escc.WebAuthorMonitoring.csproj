@@ -38,7 +38,9 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -46,10 +48,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="EmailListener.cs" />
     <Compile Include="Fakes\FakeContentManagementSystem.cs" />
     <Compile Include="Fakes\FakeRepository.cs" />
+    <Compile Include="Fakes\TestEmailListener.cs" />
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="IContentManagementProvider.cs" />
+    <Compile Include="IReportListener.cs" />
     <Compile Include="IWebAuthorMonitoringRepository.cs" />
     <Compile Include="Page.cs" />
     <Compile Include="ProblemReport.cs" />
@@ -57,6 +62,9 @@
     <Compile Include="SqlServer\SqlServerRepository.cs" />
     <Compile Include="ProblemType.cs" />
     <Compile Include="WebAuthor.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <CodeAnalysisDictionary Include="CustomDictionary.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
