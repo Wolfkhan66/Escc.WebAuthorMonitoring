@@ -9,17 +9,22 @@ namespace Escc.WebAuthorMonitoring.SqlServer
     /// </summary>
     public class SqlServerRepository : IWebAuthorMonitoringRepository
     {
-        public IEnumerable<ProblemType> ReadProblemTypes()
+        public IList<ProblemType> ReadProblemTypes()
         {
             throw new System.NotImplementedException();
         }
 
-        public void SaveReport(ProblemReport report)
+        public void SaveProblemReport(ProblemReport report)
         {
             throw new System.NotImplementedException();
         }
 
-        public IEnumerable<ProblemReport> ReadProblemReports(DateTime? startDate, DateTime? endDate, ProblemType problemType, Uri pageUrl, string webAuthorPermissionsGroup, string webAuthorName)
+        public ProblemReport ReadProblemReport(int problemReportId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public IList<ProblemReport> ReadProblemReports(DateTime? startDate, DateTime? endDate, ProblemType problemType, Uri pageUrl, string webAuthorPermissionsGroup, string webAuthorName)
         {
             throw new NotImplementedException();
         }

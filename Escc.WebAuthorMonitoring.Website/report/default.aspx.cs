@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Globalization;
+using System.Text;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -99,7 +101,7 @@ namespace Escc.WebAuthorMonitoring.Website.report
             {
                 AddDataToReport();
 
-                this._repo.SaveReport(this._problem);
+                this._repo.SaveProblemReport(this._problem);
 
                 this.PublishReport();
 
@@ -135,9 +137,47 @@ namespace Escc.WebAuthorMonitoring.Website.report
                 }
             }
 
-            this._problem.MessageHtml = this.message.Text;
+            var html = new StringBuilder();
+            html.Append("<p>This message is about <a href=\"").Append(HttpUtility.HtmlAttributeEncode(_problem.Page.PageUrl.ToString())).Append("\">").Append(HttpUtility.HtmlEncode(_problem.Page.PageTitle)).Append("</a>.</p>");
+            AddProblemTypes(html);
+            html.Append(this.message.Text);
+            AddRelatedReports(html);
 
-            this._problem.RelatedReports.AddRange(_repo.ReadProblemReports(null, null, null, null, _problem.WebAuthorPermissionsGroupName, null));
+            this._problem.MessageHtml = html.ToString();
+        }
+
+
+        private void AddProblemTypes(StringBuilder html)
+        {
+            if (_problem.ProblemTypes.Count > 1)
+            {
+                html.Append("<ul>");
+                foreach (ProblemType problemType in _problem.ProblemTypes)
+                {
+                    html.Append("<li>").Append(HttpUtility.HtmlEncode(problemType.Name)).Append("</li>");
+                }
+                html.Append("</ul>");
+            }
+        }
+
+        private void AddRelatedReports(StringBuilder html)
+        {
+            var relatedReports = _repo.ReadProblemReports(null, null, null, null, _problem.WebAuthorPermissionsGroupName, null);
+            if (relatedReports.Count > 0)
+            {
+                if (String.IsNullOrEmpty(ConfigurationManager.AppSettings["Escc.WebAuthorMonitoring.ViewReportUrl"]))
+                {
+                    throw new ConfigurationErrorsException("The appSettings entry in web.config for 'Escc.WebAuthorMonitoring.ViewReportUrl' was not found.");
+                }
+
+                html.Append("<h2>Related messages</h2><ol>");
+                foreach (ProblemReport related in relatedReports)
+                {
+                    var url = String.Format(CultureInfo.InvariantCulture, ConfigurationManager.AppSettings["Escc.WebAuthorMonitoring.ViewReportUrl"], HttpUtility.UrlEncode(related.ProblemReportId.ToString(CultureInfo.InvariantCulture)));
+                    html.Append("<li><a href=\"").Append(url).Append("\">").Append(related.SubjectLine()).Append(" - Sent ").Append(related.ReportDate.ToString("d MMM yyyy", CultureInfo.CurrentCulture)).Append("</a></li>");
+                }
+                html.Append("</ol>");
+            }
         }
     }
 }
