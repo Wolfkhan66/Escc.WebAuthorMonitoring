@@ -9,3 +9,8 @@
 // You do not need to add suppressions to this file manually.
 
 [assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1020:AvoidNamespacesWithFewTypes", Scope = "namespace", Target = "Escc.WebAuthorMonitoring.SqlServer")]
+[assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1020:AvoidNamespacesWithFewTypes", Scope = "namespace", Target = "Escc.WebAuthorMonitoring.Fakes")]
+[assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA2204:Literals should be spelled correctly", MessageId = "TestEmailListenerAddress", Scope = "member", Target = "Escc.WebAuthorMonitoring.Fakes.TestEmailListener.#ChangeEmailRecipient(System.Net.Mail.MailMessage)")]
+[assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA2204:Literals should be spelled correctly", MessageId = "WebAuthorMonitoring", Scope = "member", Target = "Escc.WebAuthorMonitoring.Fakes.TestEmailListener.#ChangeEmailRecipient(System.Net.Mail.MailMessage)")]
+[assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA2204:Literals should be spelled correctly", MessageId = "appSettings", Scope = "member", Target = "Escc.WebAuthorMonitoring.Fakes.TestEmailListener.#ChangeEmailRecipient(System.Net.Mail.MailMessage)")]
+[assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA2204:Literals should be spelled correctly", MessageId = "CmsSupport", Scope = "member", Target = "Escc.WebAuthorMonitoring.SqlServer.SqlServerRepository.#CheckForConnectionString()")]

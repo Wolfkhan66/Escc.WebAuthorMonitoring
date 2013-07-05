@@ -6,6 +6,12 @@
     public class WebAuthor
     {
         /// <summary>
+        /// Gets or sets the web author id.
+        /// </summary>
+        /// <value>The web author id.</value>
+        public int WebAuthorId { get; set; }
+
+        /// <summary>
         /// Gets or sets the web author's real name.
         /// </summary>
         /// <value>The web author's real name.</value>
@@ -22,10 +28,5 @@
         /// </summary>
         /// <value>The email address.</value>
         public string EmailAddress { get; set; }
-
-        /// <summary>
-        /// A system id for the web author which does not change
-        /// </summary>
-        public string UserId { get; set; }
     }
 }

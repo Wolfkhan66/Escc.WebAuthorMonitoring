@@ -34,6 +34,7 @@ namespace Escc.WebAuthorMonitoring
         /// </summary>
         /// <param name="urlToParse">The URL to parse.</param>
         /// <returns></returns>
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1054:UriParametersShouldNotBeStrings", MessageId = "0#")]
         Uri ParsePageUrl(string urlToParse);
     }
 }

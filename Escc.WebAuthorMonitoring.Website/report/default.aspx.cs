@@ -8,13 +8,14 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using Escc.WebAuthorMonitoring.Fakes;
 using Escc.WebAuthorMonitoring.MicrosoftCms;
+using Escc.WebAuthorMonitoring.SqlServer;
 using EsccWebTeam.EastSussexGovUK;
 
 namespace Escc.WebAuthorMonitoring.Website.report
 {
     public partial class DefaultPage : System.Web.UI.Page
     {
-        private readonly IWebAuthorMonitoringRepository _repo = new FakeRepository();
+        private readonly IWebAuthorMonitoringRepository _repo = new SqlServerRepository();
         private readonly IContentManagementProvider _cms = new MicrosoftCmsProvider();
         private readonly ProblemReport _problem = new ProblemReport();
         private readonly IEnumerable<IReportListener> _listeners = new[] { new TestEmailListener() };

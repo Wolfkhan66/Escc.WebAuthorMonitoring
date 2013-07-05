@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Text.RegularExpressions;
+using System.Web;
 using EsccWebTeam.Cms;
 using EsccWebTeam.Cms.Permissions;
 using EsccWebTeam.Data.ActiveDirectory;
@@ -98,7 +99,7 @@ namespace Escc.WebAuthorMonitoring.MicrosoftCms
             foreach (var userName in userNames[CmsRole.Editor])
             {
                 var searchFor = userName;
-                if (userName.StartsWith("WinNT://ESCC/", StringComparison.InvariantCultureIgnoreCase))
+                if (userName.StartsWith("WinNT://ESCC/", StringComparison.OrdinalIgnoreCase))
                 {
                     searchFor = userName.Substring(13);
                 }
@@ -108,8 +109,8 @@ namespace Escc.WebAuthorMonitoring.MicrosoftCms
                 {
                     webAuthors.Add(new WebAuthor()
                         {
-                            UserName = user.SamAccountName,
                             Name = user.DisplayName,
+                            UserName = user.SamAccountName,
                             EmailAddress = user.Mail
                         });
                 }
@@ -136,7 +137,7 @@ namespace Escc.WebAuthorMonitoring.MicrosoftCms
                 }
 
                 var sanitisedUrl = CmsUtilities.CorrectPublishedUrl(channel.UrlModePublished) + filename;
-                return new Uri(Regex.Replace(sanitisedUrl, "[^a-z0-9-/.]", String.Empty), UriKind.Relative);
+                return new Uri(HttpContext.Current.Request.Url.Scheme + "://" + HttpContext.Current.Request.Url.Host + Regex.Replace(sanitisedUrl, "[^a-z0-9-/.]", String.Empty));
 
             }
             return null;

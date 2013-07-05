@@ -2,15 +2,15 @@
 using System.Globalization;
 using System.Text.RegularExpressions;
 using eastsussexgovuk.webservices.TextXhtml.HouseStyle;
-using Escc.WebAuthorMonitoring.Fakes;
 using Escc.WebAuthorMonitoring.MicrosoftCms;
+using Escc.WebAuthorMonitoring.SqlServer;
 using EsccWebTeam.Data.Web;
 
 namespace Escc.WebAuthorMonitoring.Website
 {
     public partial class DefaultPage : System.Web.UI.Page
     {
-        private readonly IWebAuthorMonitoringRepository _repo = new FakeRepository();
+        private readonly IWebAuthorMonitoringRepository _repo = new SqlServerRepository();
         private readonly IContentManagementProvider _cms = new MicrosoftCmsProvider();
 
         protected void Page_Load(object sender, EventArgs e)

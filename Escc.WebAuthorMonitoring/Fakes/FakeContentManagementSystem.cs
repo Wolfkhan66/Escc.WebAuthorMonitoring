@@ -38,8 +38,8 @@ namespace Escc.WebAuthorMonitoring.Fakes
         {
             return new List<WebAuthor>()
                 {
-                    new WebAuthor(){Name="John Smith", EmailAddress = "john.smith@example.org", UserName = "johnsmith", UserId = "1"},
-                    new WebAuthor(){Name="Jane Smith", EmailAddress = "jane.smith@example.org", UserName = "janesmith", UserId = "2"}
+                    new WebAuthor(){Name="John Smith", EmailAddress = "john.smith@example.org", UserName = "johnsmith", WebAuthorId = 1},
+                    new WebAuthor(){Name="Jane Smith", EmailAddress = "jane.smith@example.org", UserName = "janesmith", WebAuthorId = 2}
                 };
         }
 

@@ -10,6 +10,7 @@
             <Word>WebAuthorMonitoring</Word>
             <Word>TestEmailListenerAddress</Word>
             <Word>ViewReportUrl</Word>
+            <Word>CmsSupport</Word>
         </Recognized>
     </Words>
 </Dictionary>

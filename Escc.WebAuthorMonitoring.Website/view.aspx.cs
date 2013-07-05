@@ -3,14 +3,14 @@ using System.Globalization;
 using System.Web;
 using System.Web.UI;
 using eastsussexgovuk.webservices.TextXhtml.HouseStyle;
-using Escc.WebAuthorMonitoring.Fakes;
+using Escc.WebAuthorMonitoring.SqlServer;
 using EsccWebTeam.EastSussexGovUK;
 
 namespace Escc.WebAuthorMonitoring.Website
 {
     public partial class view : System.Web.UI.Page
     {
-        private readonly IWebAuthorMonitoringRepository _repo = new FakeRepository();
+        private readonly IWebAuthorMonitoringRepository _repo = new SqlServerRepository();
         private ProblemReport _problem;
 
         protected void Page_Load(object sender, EventArgs e)

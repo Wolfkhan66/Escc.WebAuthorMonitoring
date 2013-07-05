@@ -7,6 +7,7 @@
     </appSettings>
     <connectionStrings>
         <add name="CMSDB" connectionString="connection string for MicrosoftCmsProvider" />
+        <add name="CmsSupport" connectionString="connection string for web author monitoring database" />
     </connectionStrings>
     <system.web>
         <compilation debug="true" targetFramework="4.0" />

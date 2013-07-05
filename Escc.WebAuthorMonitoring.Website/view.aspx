@@ -1,7 +1,7 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="view.aspx.cs" Inherits="Escc.WebAuthorMonitoring.Website.view" %>
 <asp:Content runat="server" ContentPlaceHolderID="metadata">
     <Egms:MetadataControl runat="server"
-        Title="View a problem report"
+        Title="View a problem problemReport"
         IpsvPreferredTerms="Internet"
         IsInSearch="False"
         DateCreated="2013-07-04"

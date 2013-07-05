@@ -24,18 +24,18 @@ namespace Escc.WebAuthorMonitoring.Fakes
         }
 
         /// <summary>
-        /// Saves the report and adds a unique reference number in the <see cref="ProblemReport.ProblemReportId"/> property.
+        /// Saves the problemReport and adds a unique reference number in the <see cref="ProblemReport.ProblemReportId"/> property.
         /// </summary>
-        /// <param name="report">The report.</param>
-        public void SaveProblemReport(ProblemReport report)
+        /// <param name="problemReport">The problemReport.</param>
+        public void SaveProblemReport(ProblemReport problemReport)
         {
-            if (report != null) report.ProblemReportId = 12345;
+            if (problemReport != null) problemReport.ProblemReportId = 12345;
         }
 
         /// <summary>
-        /// Reads a problem report.
+        /// Reads a problem problemReport.
         /// </summary>
-        /// <param name="problemReportId">The problem report id.</param>
+        /// <param name="problemReportId">The problem problemReport id.</param>
         public ProblemReport ReadProblemReport(int problemReportId)
         {
             var report = new ProblemReport()
@@ -46,8 +46,8 @@ namespace Escc.WebAuthorMonitoring.Fakes
                     ReportDate = DateTime.Now.AddDays(-10),
                     WebAuthorPermissionsGroupName = "Permissions group"
                 };
-            report.WebAuthors.Add(new WebAuthor() { Name = "John Smith", EmailAddress = "john.smith@example.org", UserName = "johnsmith", UserId = "1" });
-            report.WebAuthors.Add(new WebAuthor() { Name = "Jane Smith", EmailAddress = "jane.smith@example.org", UserName = "janesmith", UserId = "2" });
+            report.WebAuthors.Add(new WebAuthor() { Name = "John Smith", EmailAddress = "john.smith@example.org", UserName = "johnsmith", WebAuthorId = 1 });
+            report.WebAuthors.Add(new WebAuthor() { Name = "Jane Smith", EmailAddress = "jane.smith@example.org", UserName = "janesmith", WebAuthorId = 2 });
             report.ProblemTypes.Add(new ProblemType() { Name = "Urgent problem" });
             return report;
         }
@@ -58,10 +58,10 @@ namespace Escc.WebAuthorMonitoring.Fakes
         /// <param name="startDate">The start date.</param>
         /// <param name="endDate">The end date.</param>
         /// <param name="pageUrl">The page URL.</param>
-        /// <param name="webAuthorPermissionsGroup">Name of the web author permissions group.</param>
+        /// <param name="webAuthorPermissionsGroupName">Name of the web author permissions group.</param>
         /// <param name="webAuthorName">Name or username of the web author.</param>
         /// <returns></returns>
-        public IList<ProblemReport> ReadProblemReports(DateTime? startDate, DateTime? endDate, Uri pageUrl, string webAuthorPermissionsGroup, string webAuthorName)
+        public IList<ProblemReport> ReadProblemReports(DateTime? startDate, DateTime? endDate, Uri pageUrl, string webAuthorPermissionsGroupName, string webAuthorName)
         {
             var list = new List<ProblemReport>()
                 {
@@ -84,12 +84,12 @@ namespace Escc.WebAuthorMonitoring.Fakes
 
                 };
 
-            list[0].WebAuthors.Add(new WebAuthor() { Name = "John Smith", EmailAddress = "john.smith@example.org", UserName = "johnsmith", UserId = "1" });
-            list[0].WebAuthors.Add(new WebAuthor() { Name = "Jane Smith", EmailAddress = "jane.smith@example.org", UserName = "janesmith", UserId = "2" });
+            list[0].WebAuthors.Add(new WebAuthor() { Name = "John Smith", EmailAddress = "john.smith@example.org", UserName = "johnsmith", WebAuthorId = 1 });
+            list[0].WebAuthors.Add(new WebAuthor() { Name = "Jane Smith", EmailAddress = "jane.smith@example.org", UserName = "janesmith", WebAuthorId = 2 });
             list[0].ProblemTypes.Add(new ProblemType() { Name = "Urgent problem" });
 
-            list[1].WebAuthors.Add(new WebAuthor() { Name = "John Smith", EmailAddress = "john.smith@example.org", UserName = "johnsmith", UserId = "1" });
-            list[1].WebAuthors.Add(new WebAuthor() { Name = "Jane Smith", EmailAddress = "jane.smith@example.org", UserName = "janesmith", UserId = "2" });
+            list[1].WebAuthors.Add(new WebAuthor() { Name = "John Smith", EmailAddress = "john.smith@example.org", UserName = "johnsmith", WebAuthorId = 1 });
+            list[1].WebAuthors.Add(new WebAuthor() { Name = "Jane Smith", EmailAddress = "jane.smith@example.org", UserName = "janesmith", WebAuthorId = 2 });
             list[1].ProblemTypes.Add(new ProblemType() { Name = "Broken link" });
 
             return list;

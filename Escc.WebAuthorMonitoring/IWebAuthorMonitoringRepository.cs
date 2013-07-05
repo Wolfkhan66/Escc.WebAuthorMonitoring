@@ -16,15 +16,15 @@ namespace Escc.WebAuthorMonitoring
         IList<ProblemType> ReadProblemTypes();
 
         /// <summary>
-        /// Saves the report and adds a unique reference number in the <see cref="ProblemReport.ProblemReportId"/> property.
+        /// Saves the problemReport and adds a unique reference number in the <see cref="ProblemReport.ProblemReportId"/> property.
         /// </summary>
-        /// <param name="report">The report.</param>
-        void SaveProblemReport(ProblemReport report);
+        /// <param name="problemReport">The problemReport.</param>
+        void SaveProblemReport(ProblemReport problemReport);
 
         /// <summary>
-        /// Reads a problem report.
+        /// Reads a problem problemReport.
         /// </summary>
-        /// <param name="problemReportId">The problem report id.</param>
+        /// <param name="problemReportId">The problem problemReport id.</param>
         ProblemReport ReadProblemReport(int problemReportId);
 
         /// <summary>
@@ -33,9 +33,9 @@ namespace Escc.WebAuthorMonitoring
         /// <param name="startDate">The start date.</param>
         /// <param name="endDate">The end date.</param>
         /// <param name="pageUrl">The page URL.</param>
-        /// <param name="webAuthorPermissionsGroup">Name of the web author permissions group.</param>
+        /// <param name="webAuthorPermissionsGroupName">Name of the web author permissions group.</param>
         /// <param name="webAuthorName">Name or username of the web author.</param>
         /// <returns></returns>
-        IList<ProblemReport> ReadProblemReports(DateTime? startDate, DateTime? endDate, Uri pageUrl, string webAuthorPermissionsGroup, string webAuthorName);
+        IList<ProblemReport> ReadProblemReports(DateTime? startDate, DateTime? endDate, Uri pageUrl, string webAuthorPermissionsGroupName, string webAuthorName);
     }
 }
