@@ -64,7 +64,7 @@
     <Compile Include="WebAuthor.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="CustomDictionary.xml" />
+    <CodeAnalysisDictionary Include="CustomDictionary.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

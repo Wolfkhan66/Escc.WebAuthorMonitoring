@@ -41,7 +41,7 @@
                 <asp:TextBox runat="server" ID="to" type="date" />
                 <asp:RangeValidator runat="server" ControlToValidate="to" ErrorMessage="Please enter a valid end date" Type="Date" MinimumValue="1753-01-01" MaximumValue="9999-12-31" />
 
-	            <div><asp:button id="submit" runat="server" text="Search" CssClass="button" OnClick="Search_Click" /></div>
+	            <div><asp:button id="submit" runat="server" text="Search" CssClass="button" /></div>
             </div>
             
             <div class="text">
