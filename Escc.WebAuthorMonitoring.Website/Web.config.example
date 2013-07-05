@@ -5,6 +5,9 @@
         <add key="Escc.WebAuthorMonitoring.TestEmailListenerAddress" value="developer@example.org"/>
         <add key="Escc.WebAuthorMonitoring.ViewReportUrl" value="http://localhost/managewebsite/webauthormonitoring/view.aspx?report={0}"/>
     </appSettings>
+    <connectionStrings>
+        <add name="CMSDB" connectionString="connection string for MicrosoftCmsProvider" />
+    </connectionStrings>
     <system.web>
         <compilation debug="true" targetFramework="4.0" />
         <httpRuntime requestValidationMode="2.0"/>

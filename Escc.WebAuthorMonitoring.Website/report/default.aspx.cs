@@ -7,6 +7,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using Escc.WebAuthorMonitoring.Fakes;
+using Escc.WebAuthorMonitoring.MicrosoftCms;
 using EsccWebTeam.EastSussexGovUK;
 
 namespace Escc.WebAuthorMonitoring.Website.report
@@ -14,13 +15,15 @@ namespace Escc.WebAuthorMonitoring.Website.report
     public partial class DefaultPage : System.Web.UI.Page
     {
         private readonly IWebAuthorMonitoringRepository _repo = new FakeRepository();
-        private readonly IContentManagementProvider _cms = new FakeContentManagementSystem();
+        private readonly IContentManagementProvider _cms = new MicrosoftCmsProvider();
         private readonly ProblemReport _problem = new ProblemReport();
         private readonly IEnumerable<IReportListener> _listeners = new[] { new TestEmailListener() };
 
         protected void Page_Load(object sender, EventArgs e)
         {
             var pageUrl = ValidatePageUrlFromQueryString();
+            if (pageUrl == null) return;
+
             this._problem.Page = _cms.ReadMetadataForPage(pageUrl);
             ReadWebAuthorsForPage(pageUrl);
 
