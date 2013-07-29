@@ -31,7 +31,7 @@
                             <a id="regardingPage" runat="server"></a>
                         </p>
 
-                        <fieldset class="formPart">
+                        <fieldset class="radioButtonList">
                             <legend class="formLabel">Subject</legend>
                             <asp:CheckBoxList runat="server" ID="problemTypes" CssClass="radioButtonList problem-types" RepeatDirection="Horizontal" RepeatLayout="Flow"/>
                             <asp:CustomValidator runat="server" ErrorMessage="Please select at least one subject" OnServerValidate="RequireSubject_ServerValidate" />
