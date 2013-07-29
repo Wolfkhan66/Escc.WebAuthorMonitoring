@@ -28,6 +28,13 @@ namespace Escc.WebAuthorMonitoring.Website.report
             this._problem.Page = _cms.ReadMetadataForPage(pageUrl);
             ReadWebAuthorsForPage(pageUrl);
 
+            if (this._problem.WebAuthors.Count == 0)
+            {
+                this.reportForm.Visible = false;
+                this.noWebAuthor.Visible = true;
+                return;
+            }
+
             DisplayWebAuthors();
             DisplayLinkToPage();
             DisplayProblemTypes();

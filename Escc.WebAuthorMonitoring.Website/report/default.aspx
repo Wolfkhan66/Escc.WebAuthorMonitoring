@@ -50,6 +50,9 @@
                     <p>Your report has been sent to the web authors responsible for the page.</p>
                     <p><a href="../default.aspx">View problems reported to web authors</a></p>
                 </asp:PlaceHolder>
+                <asp:PlaceHolder runat="server" ID="noWebAuthor" Visible="False">
+                    <p>There's no web author for the page you specified.</p>
+                </asp:PlaceHolder>
             </div>
         </article>
     </div>
