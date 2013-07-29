@@ -41,7 +41,8 @@
                 theme_advanced_buttons2: "",
                 theme_advanced_buttons3: "",
                 theme_advanced_blockformats: "p,h1,h2,h3,h4,h5,h6,blockquote",
-                width: "100%"
+                width: "100%",
+                content_css: "/EsccWebTeam.Cms.WebAuthor/placeholders/tinymcecontent.css",
             });
         }
     });
