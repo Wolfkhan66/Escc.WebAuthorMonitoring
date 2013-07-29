@@ -61,5 +61,6 @@
 <asp:Content runat="server" ContentPlaceHolderID="supporting" />
 
 <asp:Content runat="server" ContentPlaceHolderID="javascript">
+    <script src="/EsccWebTeam.Cms.WebAuthor/tiny_mce/tiny_mce.js"></script>
     <script src="default.js"></script>
 </asp:Content>

@@ -27,5 +27,22 @@
                 message.val(replacementMessage);
             }
         });
+
+        // Load TinyMCE for the message. Note that the TinyMCE library needs to load from its real URL 
+        // rather than a combined script so that it can find its associated resources.
+        if (typeof (tinyMCE) != 'undefined') {
+            tinyMCE.init({
+                mode: "exact",
+                elements: "ctl00_content_message",
+                theme: "advanced",
+                theme_advanced_toolbar_location: "top",
+                theme_advanced_toolbar_align: "left",
+                theme_advanced_buttons1: "bold,bullist,,numlist,link, unlink,formatselect",
+                theme_advanced_buttons2: "",
+                theme_advanced_buttons3: "",
+                theme_advanced_blockformats: "p,h1,h2,h3,h4,h5,h6,blockquote",
+                width: "100%"
+            });
+        }
     });
 }
