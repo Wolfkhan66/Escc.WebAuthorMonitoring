@@ -55,7 +55,7 @@ namespace Escc.WebAuthorMonitoring
         private static void BuildEmailBody(ProblemReport report, MailMessage email)
         {
             var html = new StringBuilder("<div style=\"font-family:Arial\">");
-            html.Append(report.MessageHtml);
+            html.Append(report.MessageHtml.Replace("<h2>", "<h2 style=\"font-size:1.1em\">"));
             html.Append("</div>");
             email.IsBodyHtml = true;
             email.Body = html.ToString();
