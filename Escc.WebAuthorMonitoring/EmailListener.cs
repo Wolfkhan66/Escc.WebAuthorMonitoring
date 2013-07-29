@@ -15,8 +15,14 @@ namespace Escc.WebAuthorMonitoring
         /// <param name="report">The report.</param>
         public void ReportPublished(ProblemReport report)
         {
-            SendEmail(report);
+            var method = new SendEmailDelegate(SendEmail);
+            method.BeginInvoke(report, null, null);
         }
+
+        /// <summary>
+        /// Execute <see cref="SendEmail"/> asynchronously
+        /// </summary>
+        private delegate void SendEmailDelegate(ProblemReport report);
 
         /// <summary>
         /// Sends the email.
