@@ -4,8 +4,9 @@
         $(".problem-types").change(function () {
             var checkboxList = this;
 
-            var message = $(".message");
-            var currentMessage = message.val();
+            // Remove all whitespace when comparing text because TinyMCE changes the whitespace
+            var message = tinyMCE.get('ctl00_content_message');
+            var currentMessage = message.getContent().replace(/\s/g,"");
             var currentMessageIsDefault = (currentMessage == "");
             var replacementMessage = "";
 
@@ -14,7 +15,7 @@
 
                 // Get the default text for this checkbox and compare it to the current message
                 var defaultMessage = $(document.createElement('div')).html($(this).data("default-text")).text();
-                currentMessageIsDefault = (currentMessageIsDefault || currentMessage === defaultMessage);
+                currentMessageIsDefault = (currentMessageIsDefault || currentMessage === defaultMessage.replace(/\s/g,""));
 
                 // Use the default text of the first checked box as a replacement message
                 if (!replacementMessage && $("input", this).is(":checked")) {
@@ -24,7 +25,7 @@
 
             // Only replace message if it hasn't been edited
             if (currentMessageIsDefault) {
-                message.val(replacementMessage);
+                message.setContent(replacementMessage);
             }
         });
 
@@ -42,6 +43,7 @@
                 theme_advanced_buttons3: "",
                 theme_advanced_blockformats: "p,h1,h2,h3,h4,h5,h6,blockquote",
                 width: "100%",
+                height: "20em",
                 content_css: "/EsccWebTeam.Cms.WebAuthor/placeholders/tinymcecontent.css",
             });
         }
