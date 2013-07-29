@@ -69,7 +69,7 @@ namespace Escc.WebAuthorMonitoring
         public string SubjectLine()
         {
             var problemType = (ProblemTypes.Count == 1) ? ProblemTypes[0].Name : "Multiple issues";
-            return "Website - " + problemType + " Ref: " + ProblemReportId.ToString(CultureInfo.InvariantCulture);
+            return problemType + " Ref: " + ProblemReportId.ToString(CultureInfo.InvariantCulture);
         }
     }
 }
