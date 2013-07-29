@@ -18,7 +18,7 @@ namespace Escc.WebAuthorMonitoring.Website.report
         private readonly IWebAuthorMonitoringRepository _repo = new SqlServerRepository();
         private readonly IContentManagementProvider _cms = new MicrosoftCmsProvider();
         private readonly ProblemReport _problem = new ProblemReport();
-        private readonly IEnumerable<IReportListener> _listeners = new[] { new TestEmailListener() };
+        private readonly IEnumerable<IReportListener> _listeners = new[] { String.IsNullOrEmpty(ConfigurationManager.AppSettings["Escc.WebAuthorMonitoring.TestEmailListenerAddress"]) ? new EmailListener() : new TestEmailListener() };
 
         protected void Page_Load(object sender, EventArgs e)
         {
