@@ -120,8 +120,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="report\Web.config" />
-    <None Include="report\Web.config.example" />
     <None Include="Web.config.example" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
