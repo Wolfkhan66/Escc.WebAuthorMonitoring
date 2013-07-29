@@ -131,7 +131,7 @@ namespace Escc.WebAuthorMonitoring.SqlServer
             if (startDate.HasValue) sqlParameters[0].Value = startDate.Value;
 
             sqlParameters[1] = new SqlParameter("@endDate", DBNull.Value);
-            if (endDate.HasValue) sqlParameters[0].Value = endDate.Value;
+            if (endDate.HasValue) sqlParameters[1].Value = endDate.Value;
 
             sqlParameters[2] = new SqlParameter("@pageUrl", DBNull.Value);
             if (pageUrl != null) sqlParameters[2].Value = pageUrl.ToString();
