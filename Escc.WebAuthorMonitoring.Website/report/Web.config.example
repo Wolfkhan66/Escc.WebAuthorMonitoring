@@ -1,9 +1,0 @@
-﻿<?xml version="1.0"?>
-<configuration>
-    <system.web>
-        <authorization>
-            <allow roles="allowed role" />
-            <deny users="*"/>
-        </authorization>
-    </system.web>
-</configuration>

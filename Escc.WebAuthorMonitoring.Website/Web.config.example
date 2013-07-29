@@ -10,6 +10,10 @@
         <add name="CmsSupport" connectionString="connection string for web author monitoring database" />
     </connectionStrings>
     <system.web>
+        <authorization>
+            <allow roles="allowed role" />
+            <deny users="*"/>
+        </authorization>
         <compilation debug="true" targetFramework="4.0" />
         <httpRuntime requestValidationMode="2.0"/>
         <pages masterPageFile="~/example.master" enableViewState="false" validateRequest="false">
