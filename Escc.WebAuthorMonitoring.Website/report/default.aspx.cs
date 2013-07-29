@@ -70,6 +70,11 @@ namespace Escc.WebAuthorMonitoring.Website.report
             {
                 return new Uri(Request.QueryString["page"]);
             }
+            catch (ArgumentNullException)
+            {
+                EastSussexGovUKContext.HttpStatus400BadRequest(this.container);
+                return null;
+            }
             catch (UriFormatException)
             {
                 EastSussexGovUKContext.HttpStatus400BadRequest(this.container);
