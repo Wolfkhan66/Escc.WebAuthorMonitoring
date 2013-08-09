@@ -29,31 +29,35 @@ namespace Escc.WebAuthorMonitoring.MicrosoftCms
             page.PageUrl = pageUrl;
             page.PageTitle = pageUrl.ToString();
 
-            var hierarchyItem = CmsHttpContext.Current.Searches.GetByUrl(pageUrl.AbsolutePath.ToString());
-            if (hierarchyItem == null)
+            using (var cms = new CmsApplicationContext())
             {
-                return page;
-            }
-
-            var posting = hierarchyItem as Posting;
-            if (posting == null)
-            {
-                var channel = hierarchyItem as Channel;
-                if (channel != null) posting = CmsUtilities.DefaultPostingInChannel(channel);
-            }
-
-            if (posting != null)
-            {
-                if (posting.Placeholders["phDefTitle"] != null)
+                cms.AuthenticateAsCurrentUser(PublishingMode.Unpublished);
+                var hierarchyItem = cms.Searches.GetByUrl(pageUrl.AbsolutePath.ToString());
+                if (hierarchyItem == null)
                 {
-                    page.PageTitle = posting.Placeholders["phDefTitle"].Datasource.RawContent;
+                    return page;
                 }
-                else
+
+
+                var posting = hierarchyItem as Posting;
+                if (posting == null)
                 {
-                    page.PageTitle = posting.DisplayName;
+                    var channel = hierarchyItem as Channel;
+                    if (channel != null) posting = CmsUtilities.DefaultPostingInChannel(channel);
+                }
+
+                if (posting != null)
+                {
+                    if (posting.Placeholders["phDefTitle"] != null)
+                    {
+                        page.PageTitle = posting.Placeholders["phDefTitle"].Datasource.RawContent;
+                    }
+                    else
+                    {
+                        page.PageTitle = posting.DisplayName;
+                    }
                 }
             }
-
             return page;
         }
 
@@ -66,14 +70,18 @@ namespace Escc.WebAuthorMonitoring.MicrosoftCms
         {
             if (pageUrl == null) throw new ArgumentNullException("pageUrl");
 
-            var channel = CmsUtilities.ParseChannelUrl(pageUrl.ToString(), CmsHttpContext.Current);
-            if (channel != null)
+            using (var cms = new CmsApplicationContext())
             {
-                var groups = CmsPermissions.ReadCmsGroupsForChannel(channel);
-                if (groups[CmsRole.Editor].Count > 0)
+                cms.AuthenticateAsCurrentUser(PublishingMode.Unpublished);
+                var channel = CmsUtilities.ParseChannelUrl(pageUrl.ToString(), cms);
+                if (channel != null)
                 {
-                    // there should be only one
-                    return groups[CmsRole.Editor][0];
+                    var groups = CmsPermissions.ReadCmsGroupsForChannel(channel);
+                    if (groups[CmsRole.Editor].Count > 0)
+                    {
+                        // there should be only one
+                        return groups[CmsRole.Editor][0];
+                    }
                 }
             }
             return null;
@@ -127,18 +135,22 @@ namespace Escc.WebAuthorMonitoring.MicrosoftCms
         {
             if (String.IsNullOrEmpty(urlToParse)) return null;
 
-            var channel = CmsUtilities.ParseChannelUrl(urlToParse, CmsHttpContext.Current);
-            if (channel != null)
+            using (var cms = new CmsApplicationContext())
             {
-                var filename = urlToParse.Contains(".htm") ? Path.GetFileName(urlToParse) : String.Empty;
-                if (filename.IndexOf("?", StringComparison.Ordinal) > -1)
+                cms.AuthenticateAsCurrentUser(PublishingMode.Unpublished);
+                var channel = CmsUtilities.ParseChannelUrl(urlToParse, cms);
+                if (channel != null)
                 {
-                    filename = filename.Substring(0, filename.IndexOf("?", StringComparison.Ordinal));
+                    var filename = urlToParse.Contains(".htm") ? Path.GetFileName(urlToParse) : String.Empty;
+                    if (filename.IndexOf("?", StringComparison.Ordinal) > -1)
+                    {
+                        filename = filename.Substring(0, filename.IndexOf("?", StringComparison.Ordinal));
+                    }
+
+                    var sanitisedUrl = CmsUtilities.CorrectPublishedUrl(channel.UrlModePublished) + filename;
+                    return new Uri(HttpContext.Current.Request.Url.Scheme + "://" + HttpContext.Current.Request.Url.Host + Regex.Replace(sanitisedUrl, "[^a-z0-9-/.]", String.Empty));
+
                 }
-
-                var sanitisedUrl = CmsUtilities.CorrectPublishedUrl(channel.UrlModePublished) + filename;
-                return new Uri(HttpContext.Current.Request.Url.Scheme + "://" + HttpContext.Current.Request.Url.Host + Regex.Replace(sanitisedUrl, "[^a-z0-9-/.]", String.Empty));
-
             }
             return null;
         }
