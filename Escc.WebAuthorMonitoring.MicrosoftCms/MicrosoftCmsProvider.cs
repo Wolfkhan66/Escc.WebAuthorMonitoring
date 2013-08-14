@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Security.Principal;
 using System.Text.RegularExpressions;
 using System.Web;
 using EsccWebTeam.Cms;
@@ -31,8 +32,12 @@ namespace Escc.WebAuthorMonitoring.MicrosoftCms
 
             using (var cms = new CmsApplicationContext())
             {
-                cms.AuthenticateAsCurrentUser(PublishingMode.Unpublished);
-                var hierarchyItem = cms.Searches.GetByUrl(pageUrl.AbsolutePath.ToString());
+                var id = HttpContext.Current.User.Identity as WindowsIdentity;
+                if (id != null)
+                {
+                    cms.AuthenticateUsingUserHandle(id.Token, PublishingMode.Unpublished);
+                }
+                var hierarchyItem = cms.Searches.GetByUrl(pageUrl.AbsolutePath);
                 if (hierarchyItem == null)
                 {
                     return page;
@@ -72,7 +77,11 @@ namespace Escc.WebAuthorMonitoring.MicrosoftCms
 
             using (var cms = new CmsApplicationContext())
             {
-                cms.AuthenticateAsCurrentUser(PublishingMode.Unpublished);
+                var id = HttpContext.Current.User.Identity as WindowsIdentity;
+                if (id != null)
+                {
+                    cms.AuthenticateUsingUserHandle(id.Token, PublishingMode.Unpublished);
+                }
                 var channel = CmsUtilities.ParseChannelUrl(pageUrl.ToString(), cms);
                 if (channel != null)
                 {
@@ -137,7 +146,11 @@ namespace Escc.WebAuthorMonitoring.MicrosoftCms
 
             using (var cms = new CmsApplicationContext())
             {
-                cms.AuthenticateAsCurrentUser(PublishingMode.Unpublished);
+                var id = HttpContext.Current.User.Identity as WindowsIdentity;
+                if (id != null)
+                {
+                    cms.AuthenticateUsingUserHandle(id.Token, PublishingMode.Unpublished);
+                }
                 var channel = CmsUtilities.ParseChannelUrl(urlToParse, cms);
                 if (channel != null)
                 {
