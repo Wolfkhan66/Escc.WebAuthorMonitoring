@@ -5,10 +5,12 @@ using System.IO;
 using System.Security.Principal;
 using System.Text.RegularExpressions;
 using System.Web;
+using System.Xml.XPath;
 using EsccWebTeam.Cms;
 using EsccWebTeam.Cms.Permissions;
 using EsccWebTeam.Data.ActiveDirectory;
 using Microsoft.ContentManagement.Publishing;
+using Microsoft.ContentManagement.Publishing.Extensions.Placeholders;
 
 namespace Escc.WebAuthorMonitoring.MicrosoftCms
 {
@@ -53,17 +55,34 @@ namespace Escc.WebAuthorMonitoring.MicrosoftCms
 
                 if (posting != null)
                 {
-                    if (posting.Placeholders["phDefTitle"] != null)
-                    {
-                        page.PageTitle = posting.Placeholders["phDefTitle"].Datasource.RawContent;
-                    }
-                    else
-                    {
-                        page.PageTitle = posting.DisplayName;
-                    }
+                    page.PageTitle = GetPageTitleFromPlaceholder(posting, "phDefTitle");
+                    if (String.IsNullOrWhiteSpace(page.PageTitle)) page.PageTitle = GetPageTitleFromPlaceholder(posting, "phDefSubtitle01"); // for Learning Disability template
+                    if (String.IsNullOrWhiteSpace(page.PageTitle)) page.PageTitle = posting.DisplayName;
                 }
             }
             return page;
+        }
+
+        private static string GetPageTitleFromPlaceholder(Posting posting, string placeholderName)
+        {
+            var placeholder = posting.Placeholders[placeholderName];
+            if (placeholder != null)
+            {
+                if (placeholder is XmlPlaceholder)
+                {
+                    using (var reader = new StringReader(placeholder.Datasource.RawContent))
+                    {
+                        var xml = new XPathDocument(reader);
+                        var node = xml.CreateNavigator().SelectSingleNode("/Text");
+                        if (node != null) return node.InnerXml;
+                    }
+                }
+                else
+                {
+                    return placeholder.Datasource.RawContent;
+                }
+            }
+            return String.Empty;
         }
 
         /// <summary>
