@@ -1,26 +1,20 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>
     </ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{9BF421F4-3468-4692-92C0-13A4513738DB}</ProjectGuid>
+    <ProjectGuid>{8EDAD063-F23F-4050-B227-D4D0C025A8B8}</ProjectGuid>
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Escc.WebAuthorMonitoring.Website</RootNamespace>
-    <AssemblyName>Escc.WebAuthorMonitoring.Website</AssemblyName>
+    <RootNamespace>Escc.WebAuthorMonitoring.WebService</RootNamespace>
+    <AssemblyName>Escc.WebAuthorMonitoring.WebService</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <UseIISExpress>false</UseIISExpress>
     <AssemblyOriginatorKeyFile>s:\_strong names\esccdev.snk</AssemblyOriginatorKeyFile>
-    <FileUpgradeFlags>
-    </FileUpgradeFlags>
-    <UpgradeBackupLocation>
-    </UpgradeBackupLocation>
-    <OldToolsVersion>4.0</OldToolsVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -45,8 +39,6 @@
     <SignAssembly>true</SignAssembly>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="EsccWebTeam.Data.Web, Version=1.0.0.0, Culture=neutral, PublicKeyToken=06fad7304560ae6f, processorArchitecture=MSIL" />
-    <Reference Include="EsccWebTeam.HouseStyle, Version=1.0.0.0, Culture=neutral, PublicKeyToken=06fad7304560ae6f, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
@@ -65,11 +57,6 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
-    <CodeAnalysisDictionary Include="CustomDictionary.xml" />
-    <Content Include="default.aspx" />
-    <Content Include="view.aspx" />
-    <Content Include="report\default.js" />
-    <Content Include="report\default.aspx" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -77,45 +64,19 @@
     <Content Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
+    <Content Include="WebAuthorMonitoring.asmx" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="default.aspx.cs">
-      <DependentUpon>default.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="default.aspx.designer.cs">
-      <DependentUpon>default.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="view.aspx.cs">
-      <DependentUpon>view.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="view.aspx.designer.cs">
-      <DependentUpon>view.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="report\default.aspx.cs">
-      <DependentUpon>default.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="report\default.aspx.designer.cs">
-      <DependentUpon>default.aspx</DependentUpon>
+    <Compile Include="WebAuthorMonitoring.asmx.cs">
+      <DependentUpon>WebAuthorMonitoring.asmx</DependentUpon>
+      <SubType>Component</SubType>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\Inetpub\wwwroot\eastsussex.gov.uk.csproj">
-      <Project>{1426FEF0-23DC-4C23-AE15-67F2527BD741}</Project>
-      <Name>eastsussex.gov.uk</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\VS Projects\_Libraries for re-use\EsccWebTeam.FormControls\EsccWebTeam.FormControls.csproj">
-      <Project>{E6D5883F-99CE-4BF5-974A-66C542C43CFB}</Project>
-      <Name>EsccWebTeam.FormControls</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\VS Projects\_Standards\E-Government Metadata Standard %28E-GMS%29\EsccWebTeam.Egms\EsccWebTeam.Egms.csproj">
-      <Project>{78083DCB-B12F-4950-86C5-3A844D8604F3}</Project>
-      <Name>EsccWebTeam.Egms</Name>
-    </ProjectReference>
+    <None Include="Web.config.example" />
+  </ItemGroup>
+  <ItemGroup>
     <ProjectReference Include="..\Escc.WebAuthorMonitoring.MicrosoftCms\Escc.WebAuthorMonitoring.MicrosoftCms.csproj">
       <Project>{07508A25-6564-4597-B56C-07DB1D7AA512}</Project>
       <Name>Escc.WebAuthorMonitoring.MicrosoftCms</Name>
@@ -125,25 +86,17 @@
       <Name>Escc.WebAuthorMonitoring</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <None Include="Web.config.example" />
-  </ItemGroup>
-  <PropertyGroup>
-    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
-    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
-  </PropertyGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
-  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
-  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
   <ProjectExtensions>
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
           <UseIIS>True</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>2166</DevelopmentServerPort>
+          <DevelopmentServerPort>3549</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost/managewebsite/webauthormonitoring</IISUrl>
+          <IISUrl>http://localhost/Escc.WebAuthorMonitoring.WebService</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

@@ -1,0 +1,34 @@
+﻿<?xml version="1.0"?>
+
+<!--
+  For more information on how to configure your ASP.NET application, please visit
+  http://go.microsoft.com/fwlink/?LinkId=169433
+  -->
+
+<configuration>
+    <appSettings>
+        <add key="Escc.WebAuthorMonitoring.TestEmailListenerAddress" value="developer@example.org"/>
+    </appSettings>
+    <connectionStrings>
+        <add name="CMSDB" connectionString="connection string for MicrosoftCmsProvider" />
+        <add name="CmsSupport" connectionString="connection string for web author monitoring database" />
+    </connectionStrings>
+    <system.web>
+        <authentication mode="Windows" />
+
+        <authorization>
+            <allow roles="allowed role" />
+            <deny users="*"/>
+        </authorization>
+
+        <compilation debug="true" targetFramework="4.0" />
+
+        <httpModules>
+            <clear />
+            <add name="UrlAuthorization" type="System.Web.Security.UrlAuthorizationModule" />
+            <add name="WindowsAuthentication" type="System.Web.Security.WindowsAuthenticationModule" />
+        </httpModules>
+
+    </system.web>
+
+</configuration>
