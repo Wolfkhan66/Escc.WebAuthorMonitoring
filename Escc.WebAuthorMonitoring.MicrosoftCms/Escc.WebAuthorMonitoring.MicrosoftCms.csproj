@@ -37,11 +37,15 @@
     <SignAssembly>true</SignAssembly>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="EsccWebTeam.Data.ActiveDirectory, Version=1.0.0.0, Culture=neutral, PublicKeyToken=06fad7304560ae6f, processorArchitecture=MSIL">
-      <HintPath>..\..\..\VS Projects\eastsussex.gov.uk projects\A-Z\Escc.AZ.Admin\Bin\EsccWebTeam.Data.ActiveDirectory.dll</HintPath>
+    <Reference Include="EsccWebTeam.Data.ActiveDirectory">
+      <HintPath>S:\_Reference DLLs\EsccWebTeam pre-NuGet\EsccWebTeam.Data.ActiveDirectory - release\EsccWebTeam.Data.ActiveDirectory.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.ContentManagement.Publishing, Version=5.0.1200.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" />
-    <Reference Include="Microsoft.ContentManagement.Publishing.Extensions.Placeholders, Version=5.0.1200.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" />
+    <Reference Include="Microsoft.ContentManagement.Publishing">
+      <HintPath>S:\_Reference DLLs\Microsoft Content Management Server 2002\Microsoft.ContentManagement.Publishing.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ContentManagement.Publishing.Extensions.Placeholders">
+      <HintPath>S:\_Reference DLLs\Microsoft Content Management Server 2002\Microsoft.ContentManagement.Publishing.Extensions.Placeholders.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Web" />

@@ -2,9 +2,12 @@
 using System.Globalization;
 using System.Web;
 using System.Web.UI;
-using eastsussexgovuk.webservices.TextXhtml.HouseStyle;
+using Escc.Dates;
+using Escc.EastSussexGovUK.Skins;
+using Escc.EastSussexGovUK.Views;
+using Escc.EastSussexGovUK.WebForms;
+using Escc.Web;
 using Escc.WebAuthorMonitoring.SqlServer;
-using EsccWebTeam.EastSussexGovUK;
 
 namespace Escc.WebAuthorMonitoring.Website
 {
@@ -15,13 +18,19 @@ namespace Escc.WebAuthorMonitoring.Website
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            var skinnable = Master as BaseMasterPage;
+            if (skinnable != null)
+            {
+                skinnable.Skin = new CustomerFocusSkin(ViewSelector.CurrentViewIs(MasterPageFile));
+            }
+
             var reportId = GetReportIdFromQueryString();
             if (reportId == -1) return;
 
             _problem = _repo.ReadProblemReport(reportId);
 
             this.subject.InnerText = _problem.SubjectLine();
-            this.reportDate.InnerText = DateTimeFormatter.FullBritishDateWithDay(_problem.ReportDate);
+            this.reportDate.InnerText = _problem.ReportDate.ToBritishDateWithDay();
             this.messageHtml.Text = _problem.MessageHtml;
 
             DisplayWebAuthors();
@@ -40,7 +49,7 @@ namespace Escc.WebAuthorMonitoring.Website
         {
             if (!IsPostBack && String.IsNullOrEmpty(Request.QueryString["report"]))
             {
-                EastSussexGovUKContext.HttpStatus400BadRequest(this.container);
+                new HttpStatus().BadRequest();
             }
 
             try
@@ -49,12 +58,12 @@ namespace Escc.WebAuthorMonitoring.Website
             }
             catch (FormatException)
             {
-                EastSussexGovUKContext.HttpStatus400BadRequest(this.container);
+                new HttpStatus().BadRequest();
                 return -1;
             }
             catch (OverflowException)
             {
-                EastSussexGovUKContext.HttpStatus400BadRequest(this.container);
+                new HttpStatus().BadRequest();
                 return -1;
             }
         }

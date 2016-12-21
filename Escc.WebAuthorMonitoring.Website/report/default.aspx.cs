@@ -6,22 +6,30 @@ using System.Text;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using Escc.EastSussexGovUK.Skins;
+using Escc.EastSussexGovUK.Views;
+using Escc.EastSussexGovUK.WebForms;
+using Escc.Web;
 using Escc.WebAuthorMonitoring.Fakes;
-using Escc.WebAuthorMonitoring.MicrosoftCms;
 using Escc.WebAuthorMonitoring.SqlServer;
-using EsccWebTeam.EastSussexGovUK;
 
 namespace Escc.WebAuthorMonitoring.Website.report
 {
     public partial class DefaultPage : System.Web.UI.Page
     {
         private readonly IWebAuthorMonitoringRepository _repo = new SqlServerRepository();
-        private readonly IContentManagementProvider _cms = new MicrosoftCmsProvider();
+        private readonly IContentManagementProvider _cms = new FakeContentManagementSystem();
         private readonly ProblemReport _problem = new ProblemReport();
         private readonly IEnumerable<IReportListener> _listeners = new[] { String.IsNullOrEmpty(ConfigurationManager.AppSettings["Escc.WebAuthorMonitoring.TestEmailListenerAddress"]) ? new EmailListener() : new TestEmailListener() };
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            var skinnable = Master as BaseMasterPage;
+            if (skinnable != null)
+            {
+                skinnable.Skin = new CustomerFocusSkin(ViewSelector.CurrentViewIs(MasterPageFile));
+            }
+
             var pageUrl = ValidatePageUrlFromQueryString();
             if (pageUrl == null) return;
 
@@ -70,7 +78,7 @@ namespace Escc.WebAuthorMonitoring.Website.report
         {
             if (!IsPostBack && String.IsNullOrEmpty(Request.QueryString["page"]))
             {
-                EastSussexGovUKContext.HttpStatus400BadRequest(this.container);
+                new HttpStatus().BadRequest();
             }
 
             try
@@ -79,12 +87,12 @@ namespace Escc.WebAuthorMonitoring.Website.report
             }
             catch (ArgumentNullException)
             {
-                EastSussexGovUKContext.HttpStatus400BadRequest(this.container);
+                new HttpStatus().BadRequest();
                 return null;
             }
             catch (UriFormatException)
             {
-                EastSussexGovUKContext.HttpStatus400BadRequest(this.container);
+                new HttpStatus().BadRequest();
                 return null;
             }
         }
@@ -144,11 +152,11 @@ namespace Escc.WebAuthorMonitoring.Website.report
                     }
                     catch (FormatException)
                     {
-                        EastSussexGovUKContext.HttpStatus400BadRequest(this.container);
+                        new HttpStatus().BadRequest();
                     }
                     catch (OverflowException)
                     {
-                        EastSussexGovUKContext.HttpStatus400BadRequest(this.container);
+                        new HttpStatus().BadRequest();
                     }
                 }
             }
@@ -181,15 +189,10 @@ namespace Escc.WebAuthorMonitoring.Website.report
             var relatedReports = _repo.ReadProblemReports(null, null, null, _problem.WebAuthorPermissionsGroupName, null);
             if (relatedReports.Count > 0)
             {
-                if (String.IsNullOrEmpty(ConfigurationManager.AppSettings["Escc.WebAuthorMonitoring.ViewReportUrl"]))
-                {
-                    throw new ConfigurationErrorsException("The appSettings entry in web.config for 'Escc.WebAuthorMonitoring.ViewReportUrl' was not found.");
-                }
-
                 html.Append("<h2>Related messages</h2><ol>");
                 foreach (ProblemReport related in relatedReports)
                 {
-                    var url = String.Format(CultureInfo.InvariantCulture, ConfigurationManager.AppSettings["Escc.WebAuthorMonitoring.ViewReportUrl"], HttpUtility.UrlEncode(related.ProblemReportId.ToString(CultureInfo.InvariantCulture)));
+                    var url = String.Format(CultureInfo.InvariantCulture, ResolveUrl("~/view.aspx?report={0}"), HttpUtility.UrlEncode(related.ProblemReportId.ToString(CultureInfo.InvariantCulture)));
                     html.Append("<li><a href=\"").Append(url).Append("\">").Append(related.SubjectLine()).Append(" - Sent ").Append(related.ReportDate.ToString("d MMM yyyy", CultureInfo.CurrentCulture)).Append("</a></li>");
                 }
                 html.Append("</ol>");

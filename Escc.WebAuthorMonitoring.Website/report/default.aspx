@@ -1,22 +1,22 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="default.aspx.cs" Inherits="Escc.WebAuthorMonitoring.Website.report.DefaultPage" %>
 <asp:Content runat="server" ContentPlaceHolderID="metadata">
-    <Egms:MetadataControl runat="server"
+    <Metadata:MetadataControl runat="server"
         Title="Report a problem to web authors"
         DateCreated="2013-07-03"
         IpsvPreferredTerms="Internet"
         IsInSearch="False"
     />
-    <Egms:Css runat="server" Files="FormsSmall" />
+    <ClientDependency:Css runat="server" Files="FormsSmall" />
     <EastSussexGovUK:ContextContainer runat="server" Desktop="true">
-        <Egms:Css runat="server" Files="FormsMedium" MediaConfiguration="Medium" />
-        <Egms:Css runat="server" Files="FormsLarge" MediaConfiguration="Large" />
+        <ClientDependency:Css runat="server" Files="FormsMedium" MediaConfiguration="Medium" />
+        <ClientDependency:Css runat="server" Files="FormsLarge" MediaConfiguration="Large" />
     </EastSussexGovUK:ContextContainer>
 </asp:Content>
 
 <asp:Content runat="server" ContentPlaceHolderID="content">
     <div class="full-page" runat="server" id="container">
         <article>
-            <div class="text">
+            <div class="content text-content">
                 <h1>Report a problem to web authors</h1>
                 <div class="form service-form" runat="server" id="reportForm">
                     <asp:ValidationSummary runat="server"/>
@@ -57,8 +57,6 @@
         </article>
     </div>
 </asp:Content>
-
-<asp:Content runat="server" ContentPlaceHolderID="supporting" />
 
 <asp:Content runat="server" ContentPlaceHolderID="javascript">
     <script src="/EsccWebTeam.Cms.WebAuthor/tiny_mce/tiny_mce.js"></script>

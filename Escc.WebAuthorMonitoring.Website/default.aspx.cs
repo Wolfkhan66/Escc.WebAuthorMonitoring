@@ -1,20 +1,28 @@
 ﻿using System;
 using System.Globalization;
 using System.Text.RegularExpressions;
-using eastsussexgovuk.webservices.TextXhtml.HouseStyle;
-using Escc.WebAuthorMonitoring.MicrosoftCms;
+using Escc.Dates;
+using Escc.EastSussexGovUK.Skins;
+using Escc.EastSussexGovUK.Views;
+using Escc.EastSussexGovUK.WebForms;
 using Escc.WebAuthorMonitoring.SqlServer;
-using EsccWebTeam.Data.Web;
+using Escc.Web;
 
 namespace Escc.WebAuthorMonitoring.Website
 {
     public partial class DefaultPage : System.Web.UI.Page
     {
         private readonly IWebAuthorMonitoringRepository _repo = new SqlServerRepository();
-        private readonly IContentManagementProvider _cms = new MicrosoftCmsProvider();
+        private readonly IContentManagementProvider _cms = new FakeContentManagementSystem();
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            var skinnable = Master as BaseMasterPage;
+            if (skinnable != null)
+            {
+                skinnable.Skin = new CustomerFocusSkin(ViewSelector.CurrentViewIs(MasterPageFile));
+            }
+
             ValidateFilters();
 
             ConvertPostToGetRequest();
@@ -39,13 +47,13 @@ namespace Escc.WebAuthorMonitoring.Website
             var appliedFromFilter = ParseDateFilter(Request.QueryString["from"]);
             if (appliedFromFilter.HasValue)
             {
-                this.from.Text = DateTimeFormatter.ISODate(appliedFromFilter.Value);
+                this.from.Text = appliedFromFilter.Value.ToIso8601Date();
             }
 
             var appliedToFilter = ParseDateFilter(Request.QueryString["to"]);
             if (appliedToFilter.HasValue)
             {
-                this.to.Text = DateTimeFormatter.ISODate(appliedToFilter.Value);
+                this.to.Text = appliedToFilter.Value.ToIso8601Date();
             }
         }
 
@@ -71,7 +79,7 @@ namespace Escc.WebAuthorMonitoring.Website
 
         private void ValidateFilters()
         {
-            this.future1.MaximumValue = DateTimeFormatter.ISODate(DateTime.Today);
+            this.future1.MaximumValue = DateTime.Today.ToIso8601Date();
 
             if (IsPostBack) Validate();
         }
@@ -96,12 +104,12 @@ namespace Escc.WebAuthorMonitoring.Website
 
             if (urlFilter != appliedUrlFilter || webAuthorFilter != appliedWebAuthorFilter || fromFilter != appliedFromFilter || toFilter != appliedToFilter)
             {
-                Http.Status303SeeOther(
+                new HttpStatus().SeeOther(
                     new Uri(
                         "default.aspx?url=" + urlFilter +
                         "&webauthor=" + webAuthorFilter +
-                        "&from=" + (fromFilter.HasValue ? DateTimeFormatter.ISODate(fromFilter.Value) : String.Empty)
-                        + "&to=" + (toFilter.HasValue ? DateTimeFormatter.ISODate(toFilter.Value) : String.Empty),
+                        "&from=" + (fromFilter.HasValue ? fromFilter.Value.ToIso8601Date() : String.Empty)
+                        + "&to=" + (toFilter.HasValue ? toFilter.Value.ToIso8601Date() : String.Empty),
                         UriKind.Relative));
             }
         }

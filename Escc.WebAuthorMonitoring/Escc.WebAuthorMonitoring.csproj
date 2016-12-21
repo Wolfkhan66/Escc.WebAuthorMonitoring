@@ -53,6 +53,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="EmailListener.cs" />
+    <Compile Include="FakeContentManagementSystem.cs" />
     <Compile Include="Fakes\FakeContentManagementSystem.cs" />
     <Compile Include="Fakes\FakeRepository.cs" />
     <Compile Include="Fakes\TestEmailListener.cs" />
