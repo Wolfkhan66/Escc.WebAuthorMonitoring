@@ -122,11 +122,11 @@ namespace Escc.WebAuthorMonitoring.SqlServer
         /// <param name="webAuthorPermissionsGroupName">Name of the web author permissions group.</param>
         /// <param name="webAuthorName">Name or username of the web author.</param>
         /// <returns></returns>
-        public IList<ProblemReport> ReadProblemReports(DateTime? startDate, DateTime? endDate, Uri pageUrl, string webAuthorPermissionsGroupName, string webAuthorName)
+        public webAuthorProblemReports ReadProblemReports(DateTime? startDate, DateTime? endDate, Uri pageUrl, string webAuthorPermissionsGroupName, string webAuthorName,int pageIndex, int PageSize)
         {
             CheckForConnectionString();
 
-            var sqlParameters = new SqlParameter[5];
+            var sqlParameters = new SqlParameter[7];
             sqlParameters[0] = new SqlParameter("@startDate", DBNull.Value);
             if (startDate.HasValue) sqlParameters[0].Value = startDate.Value;
 
@@ -142,9 +142,22 @@ namespace Escc.WebAuthorMonitoring.SqlServer
             sqlParameters[4] = new SqlParameter("@webAuthorName", DBNull.Value);
             if (!String.IsNullOrEmpty(webAuthorName)) sqlParameters[4].Value = webAuthorName;
 
+            sqlParameters[5] = new SqlParameter("@PageIndex", SqlDbType.Int);
+            sqlParameters[5].Value = pageIndex;
+
+            sqlParameters[6] = new SqlParameter("@PageSize", SqlDbType.Int);
+            sqlParameters[6].Value = PageSize;
+
+            webAuthorProblemReports reports = new webAuthorProblemReports();
+
             using (var reader = SqlHelper.ExecuteReader(ConfigurationManager.ConnectionStrings["CmsSupport"].ConnectionString, CommandType.StoredProcedure, "usp_WebAuthorProblemReport_SelectSearch", sqlParameters))
             {
-                return BuildProblemReports(reader);
+                reports.reports = BuildProblemReports(reader);
+
+                reader.NextResult();
+                reader.Read();
+                reports.totalResults = Int32.Parse(reader["TotalResults"].ToString());
+                return reports;
             }
         }
 

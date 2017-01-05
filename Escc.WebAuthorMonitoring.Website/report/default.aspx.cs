@@ -18,7 +18,7 @@ namespace Escc.WebAuthorMonitoring.Website.report
     public partial class DefaultPage : System.Web.UI.Page
     {
         private readonly IWebAuthorMonitoringRepository _repo = new SqlServerRepository();
-        private readonly IContentManagementProvider _cms = new FakeContentManagementSystem();
+        private readonly IContentManagementProvider _cms = new UmbracoContentManagementSystem();
         private readonly ProblemReport _problem = new ProblemReport();
         private readonly IEnumerable<IReportListener> _listeners = new[] { String.IsNullOrEmpty(ConfigurationManager.AppSettings["Escc.WebAuthorMonitoring.TestEmailListenerAddress"]) ? new EmailListener() : new TestEmailListener() };
 
@@ -53,7 +53,7 @@ namespace Escc.WebAuthorMonitoring.Website.report
             _problem.WebAuthorPermissionsGroupName = _cms.ReadPermissionsGroupNameForPage(pageUrl);
             if (!String.IsNullOrEmpty(_problem.WebAuthorPermissionsGroupName))
             {
-                this._problem.WebAuthors.AddRange(_cms.ReadWebAuthorsInGroup(_problem.WebAuthorPermissionsGroupName));
+                this._problem.WebAuthors.AddRange(_cms.ReadWebAuthorsInGroup(pageUrl.ToString()));
             }
         }
 
@@ -186,11 +186,11 @@ namespace Escc.WebAuthorMonitoring.Website.report
 
         private void AddRelatedReports(StringBuilder html)
         {
-            var relatedReports = _repo.ReadProblemReports(null, null, null, _problem.WebAuthorPermissionsGroupName, null);
-            if (relatedReports.Count > 0)
+            var relatedReports = _repo.ReadProblemReports(null, null, null, _problem.WebAuthorPermissionsGroupName, null, 1, 10);
+            if (relatedReports.reports.Count > 0)
             {
                 html.Append("<h2>Related messages</h2><ol>");
-                foreach (ProblemReport related in relatedReports)
+                foreach (ProblemReport related in relatedReports.reports)
                 {
                     var url = String.Format(CultureInfo.InvariantCulture, ResolveUrl("~/view.aspx?report={0}"), HttpUtility.UrlEncode(related.ProblemReportId.ToString(CultureInfo.InvariantCulture)));
                     html.Append("<li><a href=\"").Append(url).Append("\">").Append(related.SubjectLine()).Append(" - Sent ").Append(related.ReportDate.ToString("d MMM yyyy", CultureInfo.CurrentCulture)).Append("</a></li>");

@@ -5,7 +5,6 @@ using System.Text;
 using System.Web;
 using System.Web.Services;
 using Escc.WebAuthorMonitoring.Fakes;
-using Escc.WebAuthorMonitoring.MicrosoftCms;
 using Escc.WebAuthorMonitoring.SqlServer;
 
 namespace Escc.WebAuthorMonitoring.WebService
@@ -40,7 +39,7 @@ namespace Escc.WebAuthorMonitoring.WebService
 
             var problem = new ProblemReport();
 
-            IContentManagementProvider cms = new MicrosoftCmsProvider();
+            IContentManagementProvider cms = new UmbracoContentManagementSystem();
             problem.Page = cms.ReadMetadataForPage(new Uri(pageUrl));
             problem.ReportDate = DateTime.Now;
             problem.MessageHtml = message;

@@ -41,9 +41,17 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>S:\_Reference DLLs\Microsoft Data Access Application Block 2.0\Release strong-named .NET 2.0\Microsoft.ApplicationBlocks.Data.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json, Version=8.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.8.0.3\lib\net40\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Net.Http, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5.2\System.Net.Http.dll</HintPath>
+    </Reference>
     <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -53,7 +61,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="EmailListener.cs" />
-    <Compile Include="FakeContentManagementSystem.cs" />
     <Compile Include="Fakes\FakeContentManagementSystem.cs" />
     <Compile Include="Fakes\FakeRepository.cs" />
     <Compile Include="Fakes\TestEmailListener.cs" />
@@ -66,13 +73,19 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SqlServer\SqlServerRepository.cs" />
     <Compile Include="ProblemType.cs" />
+    <Compile Include="UmbracoContentManagementSystem.cs" />
+    <Compile Include="UmbracoService.cs" />
     <Compile Include="WebAuthor.cs" />
+    <Compile Include="webAuthorProblemReports.cs" />
   </ItemGroup>
   <ItemGroup>
     <CodeAnalysisDictionary Include="CustomDictionary.xml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="SqlServer\CreateTablesAndStoredProcedures.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

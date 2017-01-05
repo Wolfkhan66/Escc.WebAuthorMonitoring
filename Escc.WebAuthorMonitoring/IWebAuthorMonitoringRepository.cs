@@ -36,6 +36,6 @@ namespace Escc.WebAuthorMonitoring
         /// <param name="webAuthorPermissionsGroupName">Name of the web author permissions group.</param>
         /// <param name="webAuthorName">Name or username of the web author.</param>
         /// <returns></returns>
-        IList<ProblemReport> ReadProblemReports(DateTime? startDate, DateTime? endDate, Uri pageUrl, string webAuthorPermissionsGroupName, string webAuthorName);
+        webAuthorProblemReports ReadProblemReports(DateTime? startDate, DateTime? endDate, Uri pageUrl, string webAuthorPermissionsGroupName, string webAuthorName, int pageIndex, int PageSize);
     }
 }

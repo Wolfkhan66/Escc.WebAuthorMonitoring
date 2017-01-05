@@ -63,13 +63,6 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Web.config" />
-    <Content Include="Web.Debug.config">
-      <DependentUpon>Web.config</DependentUpon>
-    </Content>
-    <Content Include="Web.Release.config">
-      <DependentUpon>Web.config</DependentUpon>
-    </Content>
     <Content Include="WebAuthorMonitoring.asmx" />
   </ItemGroup>
   <ItemGroup>
@@ -80,13 +73,10 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Web.config" />
     <None Include="Web.example.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Escc.WebAuthorMonitoring.MicrosoftCms\Escc.WebAuthorMonitoring.MicrosoftCms.csproj">
-      <Project>{07508A25-6564-4597-B56C-07DB1D7AA512}</Project>
-      <Name>Escc.WebAuthorMonitoring.MicrosoftCms</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Escc.WebAuthorMonitoring\Escc.WebAuthorMonitoring.csproj">
       <Project>{BFF367E6-C4F5-4A20-AC1D-E35EB05AA08F}</Project>
       <Name>Escc.WebAuthorMonitoring</Name>

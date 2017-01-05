@@ -13,7 +13,7 @@ namespace Escc.WebAuthorMonitoring.Website
     public partial class DefaultPage : System.Web.UI.Page
     {
         private readonly IWebAuthorMonitoringRepository _repo = new SqlServerRepository();
-        private readonly IContentManagementProvider _cms = new FakeContentManagementSystem();
+        private readonly IContentManagementProvider _cms = new UmbracoContentManagementSystem();
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -22,13 +22,9 @@ namespace Escc.WebAuthorMonitoring.Website
             {
                 skinnable.Skin = new CustomerFocusSkin(ViewSelector.CurrentViewIs(MasterPageFile));
             }
-
             ValidateFilters();
-
             ConvertPostToGetRequest();
-
             RepopulateSearchForm();
-
             DisplayProblemReports();
         }
 
@@ -64,11 +60,11 @@ namespace Escc.WebAuthorMonitoring.Website
             var appliedFromFilter = ParseDateFilter(Request.QueryString["from"]);
             var appliedToFilter = ParseDateFilter(Request.QueryString["to"]);
 
-            var reports = _repo.ReadProblemReports(appliedFromFilter, appliedToFilter, appliedUrlFilter, null, appliedWebAuthorFilter);
-
-            if (reports.Count > 0)
+            var reports = _repo.ReadProblemReports(appliedFromFilter, appliedToFilter, appliedUrlFilter, null, appliedWebAuthorFilter, paging.CurrentPage, paging.PageSize);
+            paging.TotalResults = reports.totalResults;
+            if (reports.reports.Count > 0)
             {
-                this.table.DataSource = reports;
+                this.table.DataSource = reports.reports;
                 this.table.DataBind();
             }
             else

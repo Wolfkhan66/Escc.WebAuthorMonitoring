@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>Escc.WebAuthorMonitoring.WebApi</id>
+    <version>1.0.0</version>
+    <authors>ESCC</authors>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>WebAuthorMonitoring WebApi</description>
+	 <frameworkAssemblies>
+         <frameworkAssembly assemblyName="System" targetFramework="net452" />
+		 <frameworkAssembly assemblyName="System.Runtime.caching" targetFramework="net452" />
+      </frameworkAssemblies>
+    <releaseNotes>First Full Release.</releaseNotes>
+    <copyright>Copyright 2016</copyright>
+	<iconUrl>https://www.eastsussex.gov.uk/apple-touch-icon.png</iconUrl>
+    <licenseUrl>http://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/</licenseUrl>
+    <projectUrl>https://github.com/east-sussex-county-council/Escc.WebAuthorMonitoring.WebApi</projectUrl>
+    <dependencies>
+		<group targetFramework="net452">
+			<dependency id ="Escc.BasicAuthentication.WebApi" version="1.0.2"/>
+			<dependency id ="UmbracoCms.Core" version="7.4.3"/>
+		</group>
+    </dependencies>
+  </metadata>
+  <files>
+	<file src="Escc.WebAuthorMonitoring.WebApi\bin\Release\Escc.WebAuthorMonitoring.WebApi.dll" target="lib"/>
+  </files>
+</package>

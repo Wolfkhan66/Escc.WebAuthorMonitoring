@@ -47,7 +47,14 @@ namespace Escc.WebAuthorMonitoring
 
                 using (var smtp = new SmtpClient())
                 {
-                    smtp.Send(email);
+                    try
+                    {
+                        smtp.Send(email);
+                    }
+                    catch (SmtpException e)
+                    {
+                        throw e;
+                    }
                 }
             }
         }

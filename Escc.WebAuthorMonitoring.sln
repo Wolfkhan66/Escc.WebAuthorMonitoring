@@ -7,8 +7,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Escc.WebAuthorMonitoring.We
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Escc.WebAuthorMonitoring", "Escc.WebAuthorMonitoring\Escc.WebAuthorMonitoring.csproj", "{BFF367E6-C4F5-4A20-AC1D-E35EB05AA08F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Escc.WebAuthorMonitoring.MicrosoftCms", "Escc.WebAuthorMonitoring.MicrosoftCms\Escc.WebAuthorMonitoring.MicrosoftCms.csproj", "{07508A25-6564-4597-B56C-07DB1D7AA512}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Escc.WebAuthorMonitoring.WebService", "Escc.WebAuthorMonitoring.WebService\Escc.WebAuthorMonitoring.WebService.csproj", "{8EDAD063-F23F-4050-B227-D4D0C025A8B8}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{7BB0378B-30C3-43C9-8049-83867EBFEB27}"
@@ -19,6 +17,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		LICENSE.md = LICENSE.md
 		README.md = README.md
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Escc.WebAuthorMonitoring.WebApi", "Escc.WebAuthorMonitoring.WebApi\Escc.WebAuthorMonitoring.WebApi.csproj", "{C768EF84-E5CE-4BA2-BC46-1DDA15A32059}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -34,14 +34,14 @@ Global
 		{BFF367E6-C4F5-4A20-AC1D-E35EB05AA08F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BFF367E6-C4F5-4A20-AC1D-E35EB05AA08F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BFF367E6-C4F5-4A20-AC1D-E35EB05AA08F}.Release|Any CPU.Build.0 = Release|Any CPU
-		{07508A25-6564-4597-B56C-07DB1D7AA512}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{07508A25-6564-4597-B56C-07DB1D7AA512}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{07508A25-6564-4597-B56C-07DB1D7AA512}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{07508A25-6564-4597-B56C-07DB1D7AA512}.Release|Any CPU.Build.0 = Release|Any CPU
 		{8EDAD063-F23F-4050-B227-D4D0C025A8B8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{8EDAD063-F23F-4050-B227-D4D0C025A8B8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8EDAD063-F23F-4050-B227-D4D0C025A8B8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8EDAD063-F23F-4050-B227-D4D0C025A8B8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C768EF84-E5CE-4BA2-BC46-1DDA15A32059}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C768EF84-E5CE-4BA2-BC46-1DDA15A32059}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C768EF84-E5CE-4BA2-BC46-1DDA15A32059}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C768EF84-E5CE-4BA2-BC46-1DDA15A32059}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

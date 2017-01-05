@@ -7,7 +7,7 @@ namespace Escc.WebAuthorMonitoring.Fakes
     /// <summary>
     /// Fake repository for web author monitoring
     /// </summary>
-    public class FakeRepository : IWebAuthorMonitoringRepository
+    public class FakeRepository //: IWebAuthorMonitoringRepository
     {
         /// <summary>
         /// Reads the possible types of problem which could be reported.
@@ -51,6 +51,7 @@ namespace Escc.WebAuthorMonitoring.Fakes
             report.ProblemTypes.Add(new ProblemType() { Name = "Urgent problem" });
             return report;
         }
+
 
         /// <summary>
         /// Reads problem reports

@@ -67,6 +67,24 @@ namespace Escc.WebAuthorMonitoring.Website {
         protected global::System.Web.UI.WebControls.Button submit;
         
         /// <summary>
+        /// paging control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Escc.NavigationControls.WebForms.PagingController paging;
+        
+        /// <summary>
+        /// pagingTop control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Escc.NavigationControls.WebForms.PagingBarControl pagingTop;
+        
+        /// <summary>
         /// table control.
         /// </summary>
         /// <remarks>
@@ -74,6 +92,15 @@ namespace Escc.WebAuthorMonitoring.Website {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Repeater table;
+        
+        /// <summary>
+        /// pagingBottom control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Escc.NavigationControls.WebForms.PagingBarControl pagingBottom;
         
         /// <summary>
         /// noneFound control.

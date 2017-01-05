@@ -1,8 +1,9 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="default.aspx.cs" Inherits="Escc.WebAuthorMonitoring.Website.DefaultPage" %>
+
 <%@ Import Namespace="System.Globalization" %>
 <%@ Import Namespace="Escc.WebAuthorMonitoring" %>
 <%@ Import Namespace="Escc.Dates" %>
-<asp:Content runat="server" ContentPlaceHolderID="metadata">
+<asp:content runat="server" contentplaceholderid="metadata">
     <Metadata:MetadataControl runat="server"
         Title="Problems reported to web authors"
         DateCreated="2013-07-03"
@@ -14,9 +15,9 @@
         <ClientDependency:Css runat="server" Files="FormsMedium" MediaConfiguration="Medium" />
         <ClientDependency:Css runat="server" Files="FormsLarge" MediaConfiguration="Large" />
     </EastSussexGovUK:ContextContainer>
-</asp:Content>
+</asp:content>
 
-<asp:Content runat="server" ContentPlaceHolderID="content">
+<asp:content runat="server" contentplaceholderid="content">
     <div class="full-page">
         <article>
             <div class="content text-content">
@@ -42,6 +43,9 @@
 
 	                <div><asp:button id="submit" runat="server" text="Search" CssClass="button" /></div>
                 </div>
+
+                <NavigationControls:PagingController id="paging" runat="server" ResultsTextSingular="result" ResultsTextPlural="results" />
+                <NavigationControls:PagingBarControl id="pagingTop" runat="server" PagingControllerId="paging" />
             
                 <asp:Repeater runat="server" ID="table">
                     <HeaderTemplate>
@@ -50,7 +54,7 @@
                             <tbody>
                     </HeaderTemplate>
                     <ItemTemplate>
-                        <tr><td><%# HttpUtility.HtmlEncode(((ProblemReport)Container.DataItem).WebAuthorPermissionsGroupName) %> web authors</td>
+                        <tr><td><%# HttpUtility.HtmlEncode(((ProblemReport)Container.DataItem).WebAuthorPermissionsGroupName) %> </td>
                             <td><a href="<%# HttpUtility.HtmlEncode(String.Format(CultureInfo.InvariantCulture, ResolveUrl("~/view.aspx?report={0}"), ((ProblemReport)Container.DataItem).ProblemReportId)) %>"><%# HttpUtility.HtmlEncode(((ProblemReport)Container.DataItem).SubjectLine()) %></a></td>
                             <td><%# HttpUtility.HtmlEncode(((ProblemReport)Container.DataItem).ReportDate.ToShortBritishDate())%></td></tr>
                     </ItemTemplate>
@@ -59,9 +63,12 @@
                         </table>
                     </FooterTemplate>
                 </asp:Repeater>
-                
+
+                <NavigationControls:PagingBarControl id="pagingBottom" runat="server" PagingControllerId="paging" />
+
+                 
                 <p id="noneFound" runat="server" Visible="False">Sorry, no reports matched your search.</p>
             </div>
         </article>
     </div>
-</asp:Content>
+</asp:content>

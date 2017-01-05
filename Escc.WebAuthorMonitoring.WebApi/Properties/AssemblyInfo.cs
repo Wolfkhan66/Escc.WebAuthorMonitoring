@@ -1,17 +1,16 @@
-﻿using System;
-using System.Reflection;
-using System.Resources;
+﻿using System.Reflection;
+using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Escc.WebAuthorMonitoring.MicrosoftCms")]
-[assembly: AssemblyDescription("Microsoft CMS 2002 code for monitoring the quality of work by web authors")]
+[assembly: AssemblyTitle("Escc.WebAuthorMonitoring.WebApi")]
+[assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("East Sussex County Council")]
-[assembly: AssemblyProduct("Escc.WebAuthorMonitoring")]
-[assembly: AssemblyCopyright("Copyright © East Sussex County Council 2013")]
+[assembly: AssemblyCompany("")]
+[assembly: AssemblyProduct("Escc.WebAuthorMonitoring.WebApi")]
+[assembly: AssemblyCopyright("Copyright ©  2016")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -21,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("c65bd325-6f7d-4751-b83a-47da48aa049b")]
+[assembly: Guid("c768ef84-e5ce-4ba2-bc46-1dda15a32059")]
 
 // Version information for an assembly consists of the following four values:
 //
@@ -35,5 +34,3 @@ using System.Runtime.InteropServices;
 // [assembly: AssemblyVersion("1.0.*")]
 [assembly: AssemblyVersion("1.0.0.0")]
 [assembly: AssemblyFileVersion("1.0.0.0")]
-[assembly: NeutralResourcesLanguageAttribute("en-GB")]
-[assembly: CLSCompliant(true)]
