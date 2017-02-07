@@ -1,4 +1,7 @@
-﻿using Escc.Web;
+﻿using Escc.EastSussexGovUK.Skins;
+using Escc.EastSussexGovUK.Views;
+using Escc.EastSussexGovUK.WebForms;
+using Escc.Web;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,6 +15,11 @@ namespace Escc.WebAuthorMonitoring.Website
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            var skinnable = Master as BaseMasterPage;
+            if (skinnable != null)
+            {
+                skinnable.Skin = new CustomerFocusSkin(ViewSelector.CurrentViewIs(MasterPageFile));
+            }
             GetPageReport();
         }
 
