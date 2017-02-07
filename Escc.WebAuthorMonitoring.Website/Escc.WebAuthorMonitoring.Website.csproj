@@ -309,6 +309,7 @@
   <ItemGroup>
     <CodeAnalysisDictionary Include="CustomDictionary.xml" />
     <Content Include="default.aspx" />
+    <Content Include="getReport.aspx" />
     <Content Include="view.aspx" />
     <Content Include="report\default.js" />
     <Content Include="report\default.aspx" />
@@ -333,6 +334,13 @@
     </Compile>
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="getReport.aspx.cs">
+      <DependentUpon>getReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="getReport.aspx.designer.cs">
+      <DependentUpon>getReport.aspx</DependentUpon>
+    </Compile>
     <Compile Include="view.aspx.cs">
       <DependentUpon>view.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
